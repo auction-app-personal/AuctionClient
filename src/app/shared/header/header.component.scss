@@ -1,0 +1,29 @@
+header {
+  background-color: rgb(143, 13, 13);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 25px 15px;
+  font-size: 1.2rem;
+}
+
+#logo {
+    display: flex;
+    gap:20px
+}
+
+nav ul {
+  display: flex;
+  gap: 15px;
+  list-style-type: none;
+}
+
+nav ul a {
+    color: white;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+nav ul a:hover{
+    background-color: rgb(193, 95, 95);
+}
