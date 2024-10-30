@@ -1,13 +1,16 @@
 <header>
-  <div>Logo block</div>
-  <div>Auction App</div>
+  <div id="logo">
+    <div>Logo block</div>
+    <div>Auction App</div>
+  </div>
   <nav>
-    Navigation
     <ul>
-      <li>Home</li>
-      <li>Auctions</li>
-      <li>Lots</li>
-      <li>My Account | Login | Register</li>
+      <li><a routerLink="/home">Home</a></li>
+      <li><a routerLink="/auctions">Auctions</a></li>
+      <li><a routerLink="/lots">Lots</a></li>
+      <li><a routerLink="/login">Login</a></li>
+      <li><a routerLink="/register">Register</a></li>
+      <li><a [routerLink]="'/accounts/'+1">My Account</a></li>
     </ul>
   </nav>
 </header>
