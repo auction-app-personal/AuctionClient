@@ -1,0 +1,98 @@
+.wrapper {
+  min-height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #253b2d;
+  padding: 5% 0;
+}
+
+.login-block {
+  color: #e9f1f7;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+}
+
+.login-block h1 {
+  width: 100%;
+  text-transform: uppercase;
+  text-align: center;
+  padding-bottom: 20px;
+  border-bottom: 4px solid #e98a15;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  width: 35vw;
+  padding: 0 3vw;
+}
+
+.login-form-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.login-form-input-group label {
+  padding-left: 10px;
+  font-size: 24px;
+  font-weight: 350;
+}
+
+.login-form-input-group input {
+  background-color: #355541;
+  border: 0;
+  font-weight: 300;
+  border-radius: 8px;
+  padding-left: 15px;
+  padding: 8px 15px;
+  font-size: 20px;
+  color: #e9f1f7;
+  letter-spacing: 1.5px;
+}
+.login-form-input-group input::placeholder {
+  color: #cccccc;
+  font-weight: 200;
+  font-size: 20px;
+  letter-spacing: 1.5px;
+}
+
+.button-group {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  font-weight: 350;
+}
+
+.sign-in-btn {
+  width: 100%;
+  padding: 8px 15px;
+  font-size: 22px;
+}
+
+.sign-in-btn:hover {
+  cursor: pointer;
+  background-color: #40664e;
+}
+
+.sign-in-btn:active {
+  background-color: #33523e;
+}
+
+.register-link {
+  text-decoration: none;
+  color: #e98a15;
+}
+
+.register-link:hover {
+  color: #eea143;
+}
+
+.register-link:active {
+  color: #e08414;
+}
