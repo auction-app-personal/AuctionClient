@@ -1,1 +1,62 @@
-<p>auction works!</p>
+<!-- export enum AuctionStatus {
+    CREATED = "CREATED",
+    PAUSED = "PAUSED",
+    STARTED = "STARTED",
+    ENDED = "ENDED"
+}
+
+export interface AuctionDto {
+    id: number;
+    name: string;
+    description: string;
+    startTimestamp: Date;
+    duration: number;
+    status: AuctionStatus;
+    ownerId: number;
+} -->
+
+<div class="wrapper">
+  @if(auction){
+  <section class="about">
+    <div class="heading">
+      <h1>{{ auction.name }}</h1>
+        <p>{{ auction.description }}</p>
+        <div class="data">
+          <ul>
+            <li>Duration: {{ auction.duration }} min</li>
+            <!-- make it show leftower time in real-time -->
+            <li>Owner: {{ auction.ownerId }}</li>
+            <!-- link to user acc -->
+            <li>Start: {{ auction.startTimestamp }}</li>
+            <li>Status: {{ auction.status }}</li>
+          </ul>
+        </div>
+      </div>
+  </section>
+  @if(lots){
+    <section class="lot-preview">
+      <h2>Lot preview</h2>
+      <app-lot-preview [lots]="lots" />
+    </section>
+  }
+  <section class="join">
+    <div class="join-button">
+      <button>Join</button>
+    </div>
+  </section>
+  <section class="lots">
+    <div class="lot-view">
+      <h3>Lot view</h3>
+      <div class="lot-view-mode">
+        <button>All lots</button>
+        <button>1 per time</button>
+      </div>
+      <div class="lot-table"></div>
+      <div class="lot-carousel"></div>
+    </div>
+  </section>
+  <section class="bidding-journal"></section>
+  } @else {
+  <section class="no-auction">No auction</section>
+  }
+</div>
