@@ -43,26 +43,8 @@
   font-weight: 350;
 }
 
-.login-form-input-group input {
-  background-color: #355541;
-  border: 0;
-  font-weight: 300;
-  border-radius: 8px;
-  padding-left: 15px;
-  padding: 8px 15px;
-  font-size: 20px;
-  color: #e9f1f7;
-  letter-spacing: 1.5px;
-}
-.login-form-input-group input::placeholder {
-  color: #cccccc;
-  font-weight: 200;
-  font-size: 20px;
-  letter-spacing: 1.5px;
-}
-
 .button-group {
-  margin-top: 25px;
+  margin-top: 32px;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -72,16 +54,7 @@
 .sign-in-btn {
   width: 100%;
   padding: 8px 15px;
-  font-size: 22px;
-}
-
-.sign-in-btn:hover {
-  cursor: pointer;
-  background-color: #40664e;
-}
-
-.sign-in-btn:active {
-  background-color: #33523e;
+  font-size: 20px;
 }
 
 .register-link {
