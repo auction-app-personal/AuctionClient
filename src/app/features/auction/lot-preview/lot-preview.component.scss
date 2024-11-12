@@ -1,0 +1,40 @@
+.lot-scroll {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.scroll-wrapper {
+  display: flex;
+  gap: 15px;
+  overflow: auto;
+  scroll-behavior: smooth;
+}
+
+.scroll-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll-button {
+  border-radius: 50%;
+  background-color: #253b2d;
+  padding: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.right {
+  transform: scaleX(-1);
+}
+
+.scroll-button:hover {
+  cursor: pointer;
+  background-color: #40664e;
+}
+
+.scroll-button:active {
+  background-color: #33523e;
+}

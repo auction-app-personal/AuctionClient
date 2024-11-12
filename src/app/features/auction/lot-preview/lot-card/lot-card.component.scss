@@ -1,0 +1,38 @@
+.lot-wrapper {
+  width: 25vw;
+  height: 35vh;
+  background-color: #253b2d;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 70% 1fr;
+  border-radius: 8px;
+  gap: 10px;
+  align-items: center;
+  justify-items: center;
+}
+
+.image-wrapper{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.lot-img{
+    transform: scale(1.5);
+}
+
+.lot-name {
+  color: #e9f1f7;
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0 auto;
+  width: 80%;
+  text-align: center;
+  padding: 7px 0;
+  border-top: 2px solid #e98a15;
+  overflow: hidden;
+}

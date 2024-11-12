@@ -1,0 +1,19 @@
+<div class="lot-scroll">
+  <img
+    (click)="scrollLeft()"
+    class="scroll-button left"
+    src="assets\icons\arrows\icons8-back-40.png"
+    alt="back"
+  />
+  <div #scroll class="scroll-wrapper">
+    @for(lot of lots; track $index){
+    <app-lot-card [lot]="lot" />
+    }
+  </div>
+  <img
+    (click)="scrollRight()"
+    class="scroll-button right"
+    src="assets\icons\arrows\icons8-back-40.png"
+    alt="back"
+  />
+</div>
