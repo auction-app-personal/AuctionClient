@@ -71,7 +71,7 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #e9f1f7;
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }
 
 .about-bckg {
@@ -80,6 +80,7 @@ section {
   width: 100%;
   overflow: hidden;
   opacity: 0.33;
+  
 }
 
 .about-info {
@@ -158,12 +159,11 @@ section {
 }
 
 @media (max-width: 900px) {
-
-  .about-info{
+  .about-info {
     height: 30vh;
   }
 
-  .wrapper{
+  .wrapper {
     grid-template-rows: auto auto;
   }
 }
