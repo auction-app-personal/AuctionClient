@@ -1,1 +1,34 @@
-<p>auction-list works!</p>
+<div class="wrapper">
+  <div class="auctions-block">
+    <div>
+      <div class="heading">
+        <h1>Auctions</h1>
+      </div>
+      <div class="filter-block">
+        <form class="filter-form">
+          <div class="form-group">
+            <label>Search by name</label>
+            <input class="form-input-green" />
+          </div>
+          <div class="form-group">
+            <label>Filter by status </label>
+            <input class="form-input-green" />
+          </div>
+          <div class="form-group">
+            <label>Sort by date</label>
+            <input class="form-input-green" />
+          </div>
+          <div class="btn-group">
+            <button class="button-green">Submit</button>
+            <button class="button-green">Reset</button>
+          </div>
+        </form>
+      </div>
+      <div class="auctions-list texture-background">
+        @for(auction of auctions; track $index){
+          <app-auction-card [auction]="auction"/>
+        }
+      </div>
+    </div>
+  </div>
+</div>

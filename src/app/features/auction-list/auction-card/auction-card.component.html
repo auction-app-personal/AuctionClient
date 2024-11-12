@@ -1,0 +1,12 @@
+<a [routerLink]="['/auctions', auction.id]" class="item-wrapper">
+  <div class="left">
+    <h2>{{ auction.name }}</h2>
+    <p>{{ auction.description }}</p>
+  </div>
+  <div class="right">
+    <p><strong>Owner:</strong> {{ auction.ownerId }}</p>
+    <p><strong>Starts date:</strong> {{ auction.startTimestamp }}</p>
+    <p><strong>Duration:</strong> {{ auction.duration }}</p>
+    <p><strong>Status:</strong> {{ auction.status }}</p>
+  </div>
+</a>
