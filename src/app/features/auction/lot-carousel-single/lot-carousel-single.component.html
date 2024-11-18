@@ -1,0 +1,15 @@
+<div class="carousel-wrapper">
+  <img
+    (click)="scrollLeft()"
+    class="scroll-button left"
+    src="assets\icons\arrows\icons8-back-40.png"
+    alt="back"
+  />
+  <app-lot-item [lot]="lots![currentLot]" />
+  <img
+    (click)="scrollRight()"
+    class="scroll-button right"
+    src="assets\icons\arrows\icons8-back-40.png"
+    alt="back"
+  />
+</div>

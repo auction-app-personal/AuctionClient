@@ -1,0 +1,36 @@
+@import "../../../../variables";
+
+.carousel-wrapper {
+  width: 90%;
+  margin: 0 auto;
+  display: grid;
+  gap: 5%;
+  grid-template-columns: 10% 1fr 10%;
+  justify-content: center;
+  align-items: center;
+}
+
+.scroll-button {
+  border-radius: 50%;
+  background-color: $main-color;
+  padding: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.right {
+  justify-self: flex-start;
+  transform: scaleX(-1);
+}
+.left {
+  justify-self: flex-end;
+}
+.scroll-button:hover {
+  cursor: pointer;
+  background-color: $main-color-hover;
+}
+
+.scroll-button:active {
+  background-color: $main-color-active;
+}
