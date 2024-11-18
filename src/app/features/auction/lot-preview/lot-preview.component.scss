@@ -8,7 +8,7 @@
 
 .scroll-wrapper {
   display: flex;
-  gap: 15px;
+  gap: 2.5%;
   overflow: auto;
   scroll-behavior: smooth;
 }
@@ -19,7 +19,7 @@
 
 .scroll-button {
   border-radius: 50%;
-  background-color: #253b2d;
+  background-color: #40664e;
   padding: 6px;
   display: flex;
   justify-content: center;
@@ -32,9 +32,9 @@
 
 .scroll-button:hover {
   cursor: pointer;
-  background-color: #40664e;
+  background-color: #4D7A5E;
 }
 
 .scroll-button:active {
-  background-color: #33523e;
+  background-color: #33523E;
 }

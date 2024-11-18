@@ -7,7 +7,7 @@
   />
   <div #scroll class="scroll-wrapper">
     @for(lot of lots; track $index){
-    <app-lot-card [lot]="lot" />
+    <app-lot-card [lot]="lot" [lotAmount]="lots.length" [lotListId]="$index"/>
     }
   </div>
   <img
