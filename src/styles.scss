@@ -1,3 +1,5 @@
+@import "variables";
+
 * {
   margin: 0;
   padding: 0;
@@ -7,7 +9,7 @@
 
 body,
 app-root {
-  background-color: #e9f1f7;
+  background-color: $text-white;
   display: flex;
   flex-direction: column;
   min-height: 112vh;
@@ -30,7 +32,7 @@ h1 {
   border-radius: 8px;
   padding: 8px 15px;
   border: none;
-  color: #e9f1f7;
+  color: $text-white;
 }
 
 .button-green:hover {
@@ -47,10 +49,9 @@ h1 {
   border: 0;
   font-weight: 300;
   border-radius: 8px;
-  padding-left: 15px;
   padding: 8px 15px;
   font-size: 20px;
-  color: #e9f1f7;
+  color: $text-white;
   letter-spacing: 1.5px;
 }
 
@@ -61,14 +62,7 @@ h1 {
   letter-spacing: 1.5px;
 }
 
-.texture-background{
-    background-color: #e9f1f7;
-    background-image: url("https://www.transparenttextures.com/patterns/cream-dust.png");
+.texture-background {
+  background-color: $text-white;
+  background-image: url("https://www.transparenttextures.com/patterns/cream-dust.png");
 }
-
-/*
-Accent #E98A15
-Main #253B2D
-Text wh #E9F1F7
-Text dark #131619
-*/
