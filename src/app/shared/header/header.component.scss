@@ -1,19 +1,20 @@
+@import "../../../variables";
+
 header {
-  background-color: #253B2D;
-  color: #E9F1F7;
+  background-color: $main-color;
+  color: $text-white;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 25px 15px;
   height: 10vh;
   // border-bottom: 4px solid #E98A15;
-
 }
 
 #logo {
-    display: flex;
-    gap:20px;
-    font-size: 24px;
+  display: flex;
+  gap: 20px;
+  font-size: 24px;
 }
 
 nav ul {
@@ -24,15 +25,15 @@ nav ul {
 }
 
 nav ul a {
-    color: #E9F1F7;
-    padding: 8px 15px;
-    border-radius: 5px;
+  color: $text-white;
+  padding: 8px 15px;
+  border-radius: 5px;
 }
 
-nav ul a:hover{
-  background-color: #395A45;
+nav ul a:hover {
+  background-color: #395a45;
 }
 
-nav ul a:active{
-  background-color: #4D795D;
+nav ul a:active {
+  background-color: #4d795d;
 }
