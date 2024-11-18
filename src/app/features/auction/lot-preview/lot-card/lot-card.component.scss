@@ -4,14 +4,15 @@
   background-color: #253b2d;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 70% 1fr;
+  grid-template-rows: 72% 1fr;
   border-radius: 8px;
+  border: 4px solid white;
   gap: 10px;
   align-items: center;
   justify-items: center;
 }
 
-.image-wrapper{
+.image-wrapper {
   width: 100%;
   height: 100%;
   display: flex;
@@ -21,8 +22,8 @@
   border-top-right-radius: 8px;
 }
 
-.lot-img{
-    transform: scale(1.5);
+.lot-img {
+  transform: scale(1.5);
 }
 
 .lot-name {
@@ -32,7 +33,21 @@
   margin: 0 auto;
   width: 80%;
   text-align: center;
-  padding: 7px 0;
+  padding: 7px 0 0 0;
   border-top: 2px solid #e98a15;
   overflow: hidden;
+}
+
+.lot-text {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.lot-number {
+  position: absolute;
+  color: #999;
+  bottom: 7px;
+  left: 10px;
+  font-size: 12px;
 }

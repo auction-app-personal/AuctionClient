@@ -6,9 +6,13 @@ import { LotDto } from '../../../../models/lot/lot.model';
   standalone: true,
   imports: [],
   templateUrl: './lot-card.component.html',
-  styleUrl: './lot-card.component.scss'
+  styleUrl: './lot-card.component.scss',
 })
 export class LotCardComponent {
-  @Input({required: true})
+  @Input({ required: true })
   lot!: LotDto;
+  @Input({ required: true })
+  lotAmount!: number;
+  @Input({ required: true })
+  lotListId!: number;
 }
