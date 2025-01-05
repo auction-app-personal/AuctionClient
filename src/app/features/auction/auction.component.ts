@@ -4,15 +4,21 @@ import { MockAuctionService } from '../../services/mock-data/mock-auction.servic
 import { ActivatedRoute } from '@angular/router';
 import { LotDto } from '../../models/lot/lot.model';
 import { MockLotService } from '../../services/mock-data/mock-lot.service';
-import { log } from 'console';
 import { LotPreviewComponent } from './lot-preview/lot-preview.component';
 import { LotTableComponent } from './lot-table/lot-table.component';
 import { LotCarouselSingleComponent } from './lot-carousel-single/lot-carousel-single.component';
+import { BiddingJournalComponent } from './bidding-journal/bidding-journal.component';
+import { BidDto } from '../../models/bid/bid.model';
 
 @Component({
   selector: 'app-auction',
   standalone: true,
-  imports: [LotPreviewComponent, LotTableComponent, LotCarouselSingleComponent],
+  imports: [
+    LotPreviewComponent,
+    LotTableComponent,
+    LotCarouselSingleComponent,
+    BiddingJournalComponent,
+  ],
   templateUrl: './auction.component.html',
   styleUrl: './auction.component.scss',
 })
@@ -20,7 +26,8 @@ export class AuctionComponent implements OnInit {
   private projectId: number;
   auction: AuctionDto | null = null;
   lots: LotDto[] | null = null;
-  tableView: boolean = false;
+  tableView: boolean = true;
+  bids: BidDto[] | null = null;
 
   constructor(
     private lotService: MockLotService,
@@ -41,7 +48,6 @@ export class AuctionComponent implements OnInit {
     this.lotService
       .getLotsByProjectId(this.projectId)
       .subscribe((data) => (this.lots = data));
-    console.log(this.lots);
   }
 
   joinAuction() {

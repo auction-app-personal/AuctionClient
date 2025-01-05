@@ -39,15 +39,22 @@
           </button>
         </div>
       </div>
-      @if(tableView){
-      <app-lot-table />
-      } @else{
-      <app-lot-carousel-single [lots]="lots" />
-      }
+      <div class="display-container">
+        @if(tableView){
+        <app-lot-table [lots]="lots"/>
+        } @else{
+        <app-lot-carousel-single [lots]="lots" />
+        }
+      </div>
     </div>
   </section>
-  <section class="bidding-journal"></section>
+  <section class="bidding-journal screen">
+    <div class="bidding-journal-header">
+      <h2>Bidding journal</h2>
+    </div>
+    <app-bidding-journal [bids]="bids"/>
+  </section>
   } @else {
-  <section class="no-auction">No auction</section>
+  <section class="no-auction screen">No auction</section>
   }
 </div>

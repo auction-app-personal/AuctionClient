@@ -13,6 +13,7 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  height: 26vh;
 }
 
 .heading h1 {
@@ -93,7 +94,8 @@
   margin: 0 auto;
 }
 
-.lot-view-header h2{
+.lot-view-header h2,
+.bidding-journal-header h2 {
   text-align: center;
   width: fit-content;
   height: fit-content;
@@ -102,15 +104,38 @@
   font-size: 22px;
 }
 
-.lot-view-mode{
+.lot-view-mode {
   margin-left: auto;
   right: 0;
   display: flex;
   gap: 10px;
 }
 
-.mode-button{
+.mode-button {
   width: 70px;
   height: 40px;
 }
 
+.bidding-journal {
+  background-color: #253b2d;
+}
+
+.bidding-journal-header h2 {
+  color: #e9f1f7;
+}
+
+.bidding-journal-header {
+  height: 60px;
+  padding: 10px;
+  width: 60%;
+  margin: 0 auto;
+}
+
+.display-container {
+  align-content: center;
+}
+
+.lots{
+  min-height: 64vh;
+  padding-bottom: 60px;
+}
