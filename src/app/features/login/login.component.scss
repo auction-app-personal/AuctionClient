@@ -57,6 +57,12 @@
   font-size: 20px;
 }
 
+.sign-in-btn:disabled,
+.sign-in-btn[disabled]{
+  opacity: 0.4;
+  cursor: default;
+}
+
 .register-link {
   text-decoration: none;
   color: #e98a15;
@@ -68,4 +74,10 @@
 
 .register-link:active {
   color: #e08414;
+}
+
+.form-error-message{
+  font-size: 14px;
+  padding-left: 20px;
+  color: #af3b2d;
 }
