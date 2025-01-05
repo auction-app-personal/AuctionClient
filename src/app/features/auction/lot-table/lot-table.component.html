@@ -1,1 +1,5 @@
-<p>lot-table works!</p>
+<div class="table">
+  @for(lot of lots; track $index){
+  <app-lot-item-expandable [lot]="lot" />
+  }
+</div>
