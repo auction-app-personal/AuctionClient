@@ -1,6 +1,10 @@
 export interface BidDto {
-    id: number | null;
-    timeCreated: string;
-    lotId: number | null;
-    accountId: number | null;
+    id: number;
+    timeCreated: string | null;
+    lotId: number;
+    lotName: string;
+    accountId: number;
+    accountName: string;
+    amount: number;
+    currency: string;
 }
