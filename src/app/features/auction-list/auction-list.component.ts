@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { AuctionDto } from '../../models/auction/auction.model';
-import { MockAuctionService } from '../../services/mock-data/mock-auction.service';
 import { AuctionCardComponent } from './auction-card/auction-card.component';
+import { AUCTION_SERVICE } from '../../services/common/injection-tokens';
+import { AuctionService } from '../../services/auction/auction-service.interface';
 @Component({
   selector: 'app-auction-list',
   standalone: true,
@@ -12,11 +13,13 @@ import { AuctionCardComponent } from './auction-card/auction-card.component';
 export class AuctionListComponent implements OnInit {
   auctions: AuctionDto[];
 
-  constructor(private auctionService: MockAuctionService) {
+  constructor(@Inject(AUCTION_SERVICE) private auctionService: AuctionService) {
     this.auctions = [];
   }
 
   ngOnInit(): void {
-    this.auctions = this.auctionService.auctions;
+    this.auctionService.getAll().then(
+      (auctions) => this.auctions = auctions
+    )
   }
 }
