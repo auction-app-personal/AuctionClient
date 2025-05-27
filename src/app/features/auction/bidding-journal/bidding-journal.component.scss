@@ -5,14 +5,18 @@
     color: $text-white;
     font-size: 18px;
     font-weight: 200;
-    border-collapse: collapse;
-    border: 6px solid $main-color-active;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 8px; /* your desired radius */
+    overflow: hidden;   /* ensure corners are clipped */
     width: 60vw;
+    border: 6px solid $main-color-active;
+
 }
 
-.bidding-journal-row{
-    border: 2px solid $main-color-active
-
+.bidding-journal-cell{
+    border-bottom: 2px solid $main-color-active;
+    border-right: 2px solid $main-color-active
 }
 
 .bidding-journal-cell{
@@ -29,9 +33,13 @@
 .bidding-journal-column-header{
     font-weight: 600;
     text-align: left;
-    padding: 10px 15px;
+    padding: 5px 15px;
 }
 
 .bidding-journal-column-header.center{
     text-align: center;
+}
+
+.bidding-journal-table-header {
+    background-color: $main-color-active;
 }
