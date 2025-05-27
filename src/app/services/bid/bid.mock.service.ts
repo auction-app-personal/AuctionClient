@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BidDto } from '../../models/bid/bid.model';
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { BidService } from './bid-service.interface';
 
 @Injectable({
@@ -60,40 +60,40 @@ export class MockBidService implements BidService {
     }
   ];
 
-  public getAll(): Promise<BidDto[]> {
-    return Promise.resolve(this.bids);
+  public getAll(): Observable<BidDto[]> {
+    return of(this.bids);
   }
 
-  public getById(id: number): Promise<BidDto | null> {
-    return Promise.resolve(this.bids.find(bid => bid.id === id) || null);
+  public getById(id: number): Observable<BidDto | null> {
+    return of(this.bids.find(bid => bid.id === id) || null);
   }
 
-  public create(item: BidDto): Promise<BidDto> {
+  public create(item: BidDto): Observable<BidDto> {
     const newId = this.bids.length ? Math.max(...this.bids.map(a => a.id)) + 1 : 1;
     item.id = newId;
     this.bids.push(item);
-    return Promise.resolve(item);
+    return of(item);
   }
 
-  public update(id: number, item: BidDto): Promise<BidDto> {
+  public update(id: number, item: BidDto): Observable<BidDto> {
     const oldItem: BidDto | null = this.bids.find(bid => bid.id === id) || null;
-    if(oldItem === null) return Promise.reject("Bid not found");
+    if(oldItem === null) return of();
     Object.assign(oldItem, item);
-    return Promise.resolve(oldItem);
+    return of(oldItem);
   }
 
-public delete(id: number): Promise<void> {
+public delete(id: number): Observable<void> {
   const originalLength = this.bids.length;
   this.bids = this.bids.filter(bid => bid.id !== id);
 
   if (this.bids.length === originalLength) {
-    return Promise.reject("Bid not found");
+    return of();
   }
 
-  return Promise.resolve();
+  return of();
 }
 
-  public getBidsByLotId(lotId: number): Promise<BidDto[]> {
-    return Promise.resolve(this.bids.filter((x) => x.lotId === lotId));
+  public getBidsByLotId(lotId: number): Observable<BidDto[]> {
+    return of(this.bids.filter((x) => x.lotId === lotId));
   }
 }

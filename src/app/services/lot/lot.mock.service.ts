@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { LotDto, LotStatus } from '../../models/lot/lot.model';
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { LotService } from './lot-service.interface';
 
 @Injectable({
@@ -67,40 +67,40 @@ export class MockLotService implements LotService{
     },
   ];
 
-  public getAll(): Promise<LotDto[]> {
-    return Promise.resolve(this.lots);
+  public getAll(): Observable<LotDto[]> {
+    return of(this.lots);
   }
 
-  public getById(id: number): Promise<LotDto | null> {
-    return Promise.resolve(this.lots.find(lot => lot.id === id) || null);
+  public getById(id: number): Observable<LotDto | null> {
+    return of(this.lots.find(lot => lot.id === id) || null);
   }
 
-  public create(item: LotDto): Promise<LotDto> {
+  public create(item: LotDto): Observable<LotDto> {
     const newId = this.lots.length ? Math.max(...this.lots.map(a => a.id)) + 1 : 1;
     item.id = newId;
     this.lots.push(item);
-    return Promise.resolve(item);
+    return of(item);
   }
 
-  public update(id: number, item: LotDto): Promise<LotDto> {
+  public update(id: number, item: LotDto): Observable<LotDto> {
     const oldItem: LotDto | null = this.lots.find(lot => lot.id === id) || null;
-    if(oldItem === null) return Promise.reject("Lot not found");
+    if(oldItem === null) return of();
     Object.assign(oldItem, item);
-    return Promise.resolve(oldItem);
+    return of(oldItem);
   }
 
-  public delete(id: number): Promise<void> {
+  public delete(id: number): Observable<void> {
     const originalLength = this.lots.length;
     this.lots = this.lots.filter(lot => lot.id !== id);
 
     if (this.lots.length === originalLength) {
-      return Promise.reject("Lot not found");
+      return of();
     }
 
-    return Promise.resolve();
+    return of();
   }
 
   public getLotsByAuctionId(auctionId: number) {
-    return Promise.resolve(this.lots.filter((x) => x.auctionId === auctionId));
+    return of(this.lots.filter((x) => x.auctionId === auctionId));
   }
 }

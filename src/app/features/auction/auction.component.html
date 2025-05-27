@@ -53,6 +53,9 @@
       <h2>Bidding journal</h2>
     </div>
     <app-bidding-journal [bids]="bids"/>
+    <div class="bidding-journal-footer">
+      {{ this.totalCollected }}
+    </div>
   </section>
   } @else {
   <section class="no-auction screen">No auction</section>

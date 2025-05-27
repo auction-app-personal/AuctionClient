@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AuctionDto, AuctionStatus } from '../../models/auction/auction.model';
 import { AuctionService } from './auction-service.interface';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -37,31 +38,31 @@ export class MockAuctionService implements AuctionService {
   ];
 
 
-  getAll(): Promise<AuctionDto[]> {
-    return Promise.resolve(this.mockAuctions); 
+  getAll(): Observable<AuctionDto[]> {
+    return of(this.mockAuctions); 
   }
 
-  getById(id: number): Promise<AuctionDto | null> {
-    return Promise.resolve(this.mockAuctions.find(auction => auction.id === id) || null);
+  getById(id: number): Observable<AuctionDto | null> {
+    return of(this.mockAuctions.find(auction => auction.id === id) || null);
   }
-  create(item: AuctionDto): Promise<AuctionDto> {
+  create(item: AuctionDto): Observable<AuctionDto> {
     const newId = this.mockAuctions.length ? Math.max(...this.mockAuctions.map(a => a.id)) + 1 : 1;
     item.id = newId;
     this.mockAuctions.push(item);
-    return Promise.resolve(item); 
+    return of(item); 
   }
-  update(id: number, item: AuctionDto): Promise<AuctionDto> {
+  update(id: number, item: AuctionDto): Observable<AuctionDto> {
     const oldItem: AuctionDto | null = this.mockAuctions.find(auction => auction.id === id) || null;
-    if(oldItem === null) return Promise.reject("Auction not found");
+    if(oldItem === null) return of();
     Object.assign(oldItem, item);
-    return Promise.resolve(oldItem);
+    return of(oldItem);
   }
-  delete(id: number): Promise<void> {
+  delete(id: number): Observable<void> {
     const oldLength = this.mockAuctions.length;
     this.mockAuctions = this.mockAuctions.filter(auction => auction.id != id);
 
-    if(oldLength === this.mockAuctions.length) return Promise.reject("Auction not found");
-    
-    return Promise.resolve();
+    if(oldLength === this.mockAuctions.length) return of();
+
+    return of();
   }
 }

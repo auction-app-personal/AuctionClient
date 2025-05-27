@@ -1,7 +1,9 @@
+import { Observable } from "rxjs";
+
 export interface CrudService<T> {
-    getAll(): Promise<T[]>;
-    getById(id: number): Promise<T | null>;
-    create(item: T): Promise<T>;
-    update(id: number, item: T): Promise<T>;
-    delete(id: number): Promise<void>;
+    getAll(): Observable<T[]>;
+    getById(id: number): Observable<T | null>;
+    create(item: T): Observable<T>;
+    update(id: number, item: T): Observable<T>;
+    delete(id: number): Observable<void>;
 }
