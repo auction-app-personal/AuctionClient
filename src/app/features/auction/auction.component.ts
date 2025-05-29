@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { AuctionDto } from '../../models/auction/auction.model';
 import { ActivatedRoute } from '@angular/router';
 import { LotDto } from '../../models/lot/lot.model';
@@ -11,6 +11,7 @@ import { AUCTION_FACADE, AUCTION_SERVICE, LOT_SERVICE } from '../../services/com
 import { LotService } from '../../services/lot/lot-service.interface';
 import { AuctionService } from '../../services/auction/auction-service.interface';
 import { AuctionFacadeService } from '../../services/shared/auction-facade.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-auction',
@@ -24,12 +25,14 @@ import { AuctionFacadeService } from '../../services/shared/auction-facade.servi
   templateUrl: './auction.component.html',
   styleUrl: './auction.component.scss',
 })
-export class AuctionComponent implements OnInit {
+export class AuctionComponent implements OnInit, OnDestroy {
   private auctionId: number;
+  private routeSubscription: Subscription | null = null;
   auction: AuctionDto | null = null;
   lots: LotDto[] | null = null;
   tableView: boolean = true;
   bids: BidDto[] | null = null;
+  totalCollected: number = 0;
 
   constructor(
     @Inject(LOT_SERVICE) private lotService: LotService,
@@ -40,34 +43,32 @@ export class AuctionComponent implements OnInit {
   ) {
     this.auctionId = 0;
   }
+  ngOnDestroy(): void {
+    //add other subscriptions
+    if(this.routeSubscription)
+      this.routeSubscription.unsubscribe();
+  }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((params) => {
+    this.routeSubscription = this.route.paramMap.subscribe((params) => {
       const idVal = params.get('id');
       if (idVal) {
         this.auctionId = parseInt(idVal);
       }
     });
 
-    this.auctionService.getById(this.auctionId).then(
-      (value) => {
-        this.auction = value;
-      }
-    );
+     this.auctionService.getById(this.auctionId)
+      .subscribe((value) => this.auction = value);
 
     this.lotService
       .getLotsByAuctionId(this.auctionId)
-      .then(
-        (value) => {
-          this.lots = value;
-        }
-      );
+      .subscribe((value) => this.lots = value);
 
-    this.auctionFacade.getBidsByAuctionId(this.auctionId).then(
-      (value) => {
-        this.bids = value;
-      }
-    )
+    this.auctionFacade.getBidsByAuctionId(this.auctionId)
+      .subscribe((value) => this.bids = value);
+
+    this.auctionFacade.getTotalCurrentMoneyCollected(this.auctionId)
+      .subscribe((value) => this.totalCollected = value);
   }
 
   joinAuction() {

@@ -18,7 +18,7 @@ export class AuctionListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.auctionService.getAll().then(
+    this.auctionService.getAll().subscribe(
       (auctions) => this.auctions = auctions
     )
   }
