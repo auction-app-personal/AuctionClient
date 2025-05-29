@@ -1,1 +1,26 @@
-<p>account works!</p>
+<div class="wrapper">
+    @if(account){
+        <section class="account-info screen">
+            <section class="about">
+                <div class="heading">
+                <h1>{{ account.username }}</h1>
+                <div class="data">
+                    <ul>
+                    <li><span>Name: </span> {{ account.name }}</li>
+                    <li><span>Surname: </span>{{ account.surname }}</li>
+                    <li><span>Age: </span>`age` ({{ account.dob }})</li>
+                    <li><span>Gender: </span>{{ account.gender }}</li>
+                    <li><span>Email: </span>{{ account.email }}</li>
+                    <li><span>Role: </span>{{ account.role }}</li>
+                    </ul>
+                </div>
+                </div>
+            </section>
+        </section>
+    } @else {
+        <div>
+            No account
+        </div>
+    }
+
+</div>

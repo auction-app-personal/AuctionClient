@@ -1,0 +1,54 @@
+@import "../../../variables";
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 90vh;
+}
+
+.account-info{
+    background-color: $main-color;
+    color: #e9f1f7;
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 26vh;
+}
+
+.heading h1 {
+  width: 60%;
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 8px;
+  border-bottom: 4px solid #e98a15;
+}
+
+.heading p {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.data {
+  width: fit-content;
+  padding: 16px 32px;
+  margin: 0 auto;
+  font-size: 18px;
+}
+
+.data ul {
+  display: grid;
+  list-style: none;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px 64px;
+  align-items: flex-start;
+  justify-items: left;
+}
+
+.data span{
+    font-weight: 400;
+}
+
