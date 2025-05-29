@@ -15,15 +15,17 @@ export class AuctionFacadeService {
             }
 
   public async getBidsByAuctionId(auctionId: number): Promise<BidDto[]> {
-    const lots = await this.lotService.getLotsByAuctionId(auctionId);
-    const lotIds = lots.map(lot => lot.id);
+    try{
+      const lots = await this.lotService.getLotsByAuctionId(auctionId);
+      const lotIds = lots.map(lot => lot.id);
+      const bidPromises = lotIds.map(lotId =>
+        this.bidService.getBidsByLotId(lotId).catch(() => [])
+      );
+      const results = await Promise.all(bidPromises);
 
-    const bidPromises = lotIds.map(lotId =>
-      this.bidService.getBidsByLotId(lotId).catch(() => [])
-    );
-
-    const results = await Promise.all(bidPromises);
-
-    return results.flat();
+      return results.flat();
+    } catch (error){
+      return Promise.reject(error);
+    }
   }
 }
