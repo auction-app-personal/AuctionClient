@@ -3,16 +3,17 @@
         <tr>
             <th class="bidding-journal-column-header">Name</th>
             <th class="bidding-journal-column-header">Lot</th>
-            <th class="bidding-journal-column-header">Amount</th>
-            <th class="bidding-journal-column-header">Time</th>
+            <th class="bidding-journal-column-header center">Amount</th>
+            <th class="bidding-journal-column-header center">Time</th>
         </tr>
     </thead>
     <tbody>
         @for (bid of bids; track bid.id) {
-            <tr>
-                <td>{{ bid.accountName }}</td>
-                <td>{{ bid.lotName }}</td>
-                <td>{{ bid.amount }} {{ bid.currency }}</td>
+            <tr class="bidding-journal-row">
+                <td class="bidding-journal-cell">{{ bid.accountName }}</td>
+                <td class="bidding-journal-cell">{{ bid.lotName }}</td>
+                <td class="bidding-journal-cell center">{{ bid.amount }} {{ bid.currency }}</td>
+                <td class="bidding-journal-cell center">{{ bid.timeCreated }}</td>
             </tr>
         }
     </tbody>
