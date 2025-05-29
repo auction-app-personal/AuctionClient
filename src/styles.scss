@@ -35,12 +35,12 @@ h1 {
   color: $text-white;
 }
 
-.button-green:hover {
+.button-green:hover:enabled {
   cursor: pointer;
   background-color: #40664e;
 }
 
-.button-green:active {
+.button-green:active:enabled {
   background-color: #33523e;
 }
 
@@ -65,4 +65,8 @@ h1 {
 .texture-background {
   background-color: $text-white;
   background-image: url("https://www.transparenttextures.com/patterns/cream-dust.png");
+}
+
+.screen{
+  min-height: 100vh;
 }
