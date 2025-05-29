@@ -1,21 +1,38 @@
 <div class="wrapper">
   <div class="login-block">
     <h1>User Login</h1>
-    <form class="login-form">
+    <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <div class="login-form-input-group">
         <label for="email">Email Address</label>
-        <input class="form-input-green" id="email" type="email" placeholder="Enter email" />
+        <input
+          class="form-input-green"
+          id="email"
+          type="email"
+          placeholder="Enter email"
+          formControlName="login"
+        />
       </div>
       <div class="login-form-input-group">
         <label for="password">Password</label>
-        <input class="form-input-green" id="password" type="password" placeholder="Enter password" />
+        <input
+          class="form-input-green"
+          id="password"
+          type="password"
+          placeholder="Enter password"
+          formControlName="password"
+        />
       </div>
       <div class="button-group">
-        <button (click)="submit()" class="button-green sign-in-btn">Login</button>
+        <button [disabled]="loginForm.invalid" class="button-green sign-in-btn">
+          Login
+        </button>
+        @if(loginForm.get("login")?.dirty && loginForm.get("password")?.dirty &&
+        loginForm.invalid){
+        <p class="form-error-message">* All fields are required</p>
+        }
         <p class="register-text">
-          Don't have an account? <a routerLink="/register" class="register-link"
-            > Sign up</a
-          >
+          Don't have an account?
+          <a routerLink="/register" class="register-link"> Sign up</a>
         </p>
       </div>
     </form>
