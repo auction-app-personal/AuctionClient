@@ -1,0 +1,58 @@
+.lot-wrapper {
+  width: 30vw;
+  height: 40vh;
+  background-color: #253b2d;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 72% 1fr;
+  border-radius: 8px;
+  gap: 10px;
+  align-items: center;
+  justify-items: center;
+}
+
+.image-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.lot-img {
+  transform: scale(1.5);
+}
+
+.lot-name {
+  color: #e9f1f7;
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0 auto;
+  width: 80%;
+  text-align: center;
+  padding: 7px 0 0 0;
+  border-top: 2px solid #e98a15;
+  overflow: hidden;
+}
+
+.lot-text {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.lot-number {
+  position: absolute;
+  color: #999;
+  bottom: 7px;
+  left: 10px;
+  font-size: 12px;
+}
+
+.highest-bidder {
+  color: #e9f1f7;
+  font-size: 18px;
+  font-weight: 500;
+  width: 80%;
+  margin: 0 auto;
+}
