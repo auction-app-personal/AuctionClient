@@ -27,7 +27,7 @@ import { Subscription } from 'rxjs';
 })
 export class AuctionComponent implements OnInit, OnDestroy {
   private auctionId: number;
-  private routeSubscription: Subscription | null = null;
+  private subscription = new Subscription();
   auction: AuctionDto | null = null;
   lots: LotDto[] | null = null;
   tableView: boolean = true;
@@ -44,32 +44,36 @@ export class AuctionComponent implements OnInit, OnDestroy {
     this.auctionId = 0;
   }
   ngOnDestroy(): void {
-    //add other subscriptions
-    if(this.routeSubscription)
-      this.routeSubscription.unsubscribe();
+    this.subscription.unsubscribe();
   }
 
   ngOnInit(): void {
-    this.routeSubscription = this.route.paramMap.subscribe((params) => {
+    const routeSubscription = this.route.paramMap.subscribe((params) => {
       const idVal = params.get('id');
       if (idVal) {
         this.auctionId = parseInt(idVal);
       }
     });
 
-     this.auctionService.getById(this.auctionId)
+    const auctionSub = this.auctionService.getById(this.auctionId)
       .subscribe((value) => this.auction = value);
 
-    this.lotService
+    const lotSub = this.lotService
       .getLotsByAuctionId(this.auctionId)
       .subscribe((value) => this.lots = value);
 
-    this.auctionFacade.getBidsByAuctionId(this.auctionId)
+    const bidSub = this.auctionFacade.getBidsByAuctionId(this.auctionId)
       .subscribe((value) => this.bids = value);
 
-    this.auctionFacade.getTotalCurrentMoneyCollected(this.auctionId)
+    const totalCollectedSub = this.auctionFacade.getTotalCurrentMoneyCollected(this.auctionId)
       .subscribe((value) => this.totalCollected = value);
-  }
+
+      this.subscription.add(routeSubscription);
+      this.subscription.add(auctionSub);
+      this.subscription.add(lotSub);
+      this.subscription.add(bidSub);
+      this.subscription.add(totalCollectedSub);
+    }
 
   joinAuction() {
     console.log('joined');
