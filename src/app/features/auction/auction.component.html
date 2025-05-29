@@ -54,7 +54,8 @@
     </div>
     <app-bidding-journal [bids]="bids"/>
     <div class="bidding-journal-footer">
-      {{ this.totalCollected }}
+      <span>Time Remaining: </span>
+      <span>Total money collected: {{ this.totalCollected }}</span>
     </div>
   </section>
   } @else {
