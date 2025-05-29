@@ -1,22 +1,66 @@
 <div class="wrapper">
+  <div></div>
   <div class="login-block">
     <h1>Create account</h1>
-    <form class="login-form">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="login-form">
       <div class="login-form-input-group">
         <label for="email">Email Address</label>
-        <input class="form-input-green" id="email" type="email" placeholder="Enter email" />
+        <input
+          class="form-input-green"
+          id="email"
+          type="email"
+          placeholder="Enter email"
+          formControlName="login"
+        />
       </div>
       <div class="login-form-input-group">
         <label for="password">Password</label>
-        <input class="form-input-green" id="password" type="password" placeholder="Enter password" />
+        <input
+          class="form-input-green"
+          id="password"
+          type="password"
+          placeholder="Enter password"
+          formControlName="password"
+        />
+      </div>
+      <div class="login-form-input-group">
+        <label for="password">Repeat password</label>
+        <input
+          class="form-input-green"
+          id="repeatPassword"
+          type="password"
+          placeholder="Repeat password"
+          formControlName="repeatPassword"
+        />
       </div>
       <div class="button-group">
-        <button class="button-green sign-in-btn">Submit</button>
+        <button [disabled]="registerForm.invalid" class="button-green sign-in-btn">Submit</button>
         <p class="register-text">
           Already have an account?
           <a routerLink="/login" class="register-link"> Login</a>
         </p>
       </div>
     </form>
+  </div>
+  <div class="requirements-block">
+    <h4>Password requirements</h4>
+    <p [class]="checkPasswordValidator('size') ? 'applied' : ''">
+      At least 8 characters
+    </p>
+    <p [class]="checkPasswordValidator('lowerchar') ? 'applied' : ''">
+      At least 1 lowercase character
+    </p>
+    <p [class]="checkPasswordValidator('upperchar') ? 'applied' : ''">
+      At least 1 uppercase character
+    </p>
+    <p [class]="checkPasswordValidator('digit') ? 'applied' : ''">
+      At least 1 digit
+    </p>
+    <p [class]="checkPasswordValidator('specialchar') ? 'applied' : ''">
+      At least 1 special symbol
+    </p>
+    <p [class]="checkPasswordValidator('passwordmatch') ? 'applied' : ''">
+      Both passwords must match
+    </p>
   </div>
 </div>
