@@ -5,11 +5,12 @@ import { ACCOUNT_SERVICE } from '../../services/common/injection-tokens';
 import { AccountDto } from '../../models/account/account.model';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { AccountAuctionsComponent } from "./account-auctions/account-auctions.component";
 
 @Component({
   selector: 'app-account',
   standalone: true,
-  imports: [],
+  imports: [AccountAuctionsComponent],
   templateUrl: './account.component.html',
   styleUrl: './account.component.scss'
 })
