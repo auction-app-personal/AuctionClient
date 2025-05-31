@@ -15,7 +15,7 @@ export class MockAuctionService implements AuctionService {
       startTimestamp: new Date('2024-11-20T10:00:00'),
       duration: 7, // 7 days
       status: AuctionStatus.STARTED,
-      ownerId: 101,
+      ownerId: 1,
     },
     {
       id: 2,
@@ -24,7 +24,7 @@ export class MockAuctionService implements AuctionService {
       startTimestamp: new Date('2024-11-22T14:00:00'),
       duration: 5,
       status: AuctionStatus.CREATED,
-      ownerId: 102,
+      ownerId: 2,
     },
     {
       id: 3,
@@ -33,7 +33,7 @@ export class MockAuctionService implements AuctionService {
       startTimestamp: new Date('2024-11-25T09:00:00'),
       duration: 3,
       status: AuctionStatus.PAUSED,
-      ownerId: 103,
+      ownerId: 3,
     },
   ];
 

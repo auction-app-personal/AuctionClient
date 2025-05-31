@@ -1,16 +1,19 @@
 import { Inject, Injectable } from "@angular/core";
-import { AUCTION_SERVICE, BID_SERVICE, LOT_SERVICE } from "../common/injection-tokens";
+import { ACCOUNT_SERVICE, AUCTION_SERVICE, BID_SERVICE, LOT_SERVICE } from "../common/injection-tokens";
 import { BidService } from "../bid/bid-service.interface";
 import { AuctionService } from "../auction/auction-service.interface";
 import { LotService } from "../lot/lot-service.interface";
 import { BidDto } from "../../models/bid/bid.model";
-import { catchError, forkJoin, map, Observable, of, reduce, switchMap } from "rxjs";
+import { catchError, filter, forkJoin, map, mergeMap, Observable, of, switchMap } from "rxjs";
+import { AccountService } from "../account/account-service.interface";
+import { AuctionDto } from "../../models/auction/auction.model";
 
 @Injectable()
 export class AuctionFacadeService {
   constructor(
             @Inject(BID_SERVICE) private bidService: BidService,
             @Inject(AUCTION_SERVICE) private auctionService: AuctionService,
+            @Inject(ACCOUNT_SERVICE) private accountService: AccountService,
             @Inject(LOT_SERVICE) private lotService: LotService) {
 
             }
@@ -40,12 +43,22 @@ public getBidsByAuctionId(auctionId: number): Observable<BidDto[]> {
       )
   }
 
-private getHighestBidForLot(lotId: number): Observable<number> {
-  return this.bidService.getBidsByLotId(lotId).pipe(
-    map(bids => {
-      const sorted = bids.map(bid => bid.amount).sort((a, b) => b - a);
-      return sorted.at(0) ?? 0;
-    })
-  );
-}
+  private getHighestBidForLot(lotId: number): Observable<number> {
+    return this.bidService.getBidsByLotId(lotId).pipe(
+      map(bids => {
+        const sorted = bids.map(bid => bid.amount).sort((a, b) => b - a);
+        return sorted.at(0) ?? 0;
+      })
+    );
+  }
+
+  getAuctionByAccountId(accountId: number): Observable<AuctionDto[]> {
+  return this.accountService.getById(accountId).pipe(
+    switchMap(account =>
+      this.auctionService.getAll().pipe(
+          map(auctions => auctions.filter(auction => auction.ownerId === account?.id))
+        )
+      )
+    );
+  }
 }
