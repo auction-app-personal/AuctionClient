@@ -17,8 +17,10 @@ export class LotCarouselSingleComponent {
   scrollRight() {
     if (!this.lots) return;
     if (this.currentLot < this.lots.length - 1) this.currentLot++;
+    else this.currentLot = 0;
   }
   scrollLeft() {
-    if (this.currentLot > 0) this.currentLot--;
+    if (this.currentLot > 0) this.currentLot--
+    else this.currentLot = this.lots!.length - 1;
   }
 }
