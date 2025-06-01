@@ -14,7 +14,7 @@ export class MockLotService implements LotService{
       name: 'Lot 1',
       description: 'Antique Painting',
       startPrice: 500,
-      status: LotStatus.OPENED,
+      status: LotStatus.AWAITING_AUCTION,
       auctionId: 1,
     },
     {
@@ -22,7 +22,7 @@ export class MockLotService implements LotService{
       name: 'Lot 2',
       description: 'Vintage Car',
       startPrice: 15000,
-      status: LotStatus.OPENED,
+      status: LotStatus.AWAITING_AUCTION,
       auctionId: 1,
     },
     {
@@ -38,7 +38,7 @@ export class MockLotService implements LotService{
       name: 'Lot 4',
       description: 'Luxury Watch',
       startPrice: 8000,
-      status: LotStatus.CLOSED,
+      status: LotStatus.CURRENTLY_AUCTIONED,
       auctionId: 1,
     },
     {
@@ -46,7 +46,7 @@ export class MockLotService implements LotService{
       name: 'Lot 5',
       description: 'Exotic Furniture',
       startPrice: 3500,
-      status: LotStatus.OPENED,
+      status: LotStatus.AWAITING_AUCTION,
       auctionId: 1,
     },
     {
@@ -54,7 +54,7 @@ export class MockLotService implements LotService{
       name: 'Lot 6',
       description: 'Modern Art Piece',
       startPrice: 1200,
-      status: LotStatus.OPENED,
+      status: LotStatus.AWAITING_AUCTION,
       auctionId: 2,
     },
     {
