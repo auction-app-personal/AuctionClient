@@ -17,6 +17,7 @@ export class AccountAuctionsComponent implements OnInit, OnDestroy{
   accountId: number | null = null;
 
   ownedAuctions: AuctionDto[] = [];
+  participatedAuctions: AuctionDto[] = [];
 
   private subscriptions: Subscription = new Subscription();
 
@@ -25,11 +26,16 @@ export class AccountAuctionsComponent implements OnInit, OnDestroy{
   }
 
   ngOnInit(): void {
-    const auctionsSub = this.auctionService.getAuctionByAccountId(this.accountId!).subscribe(
+    const ownedAuctionsSub = this.auctionService.getAuctionsByOwnerId(this.accountId!).subscribe(
       (auctions) => this.ownedAuctions = auctions
     );
 
-    this.subscriptions.add(auctionsSub);
+    const participatedAuctionsSub = this.auctionService.getAuctionsByParticipantId(this.accountId!).subscribe(
+      (auctions) => this.participatedAuctions = auctions
+    );
+
+    this.subscriptions.add(ownedAuctionsSub);
+    this.subscriptions.add(participatedAuctionsSub);
   }
 
   ngOnDestroy(): void {

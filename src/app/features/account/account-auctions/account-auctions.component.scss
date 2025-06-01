@@ -1,0 +1,61 @@
+@import "../../../../variables";
+
+.account-auctions-tables-wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10vw;
+}
+
+.account-auctions-table-heading{
+    text-align: center;
+    width: 60%;
+    margin: 0 auto;
+    padding-top: 20px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #e98a15;
+}
+
+.account-auctions-table{
+    width: 35vw;
+    color: $text-white;
+    font-size: 18px;
+    font-weight: 200;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 8px; /* your desired radius */
+    overflow: hidden;   /* ensure corners are clipped */
+    border: 6px solid $main-color-active;
+    margin-top: 10px;
+}
+
+.account-auctions-table-cell{
+    border-bottom: 2px solid $main-color-active;
+    border-right: 2px solid $main-color-active;
+    padding-top: 8px;
+    padding-bottom: 3px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.account-auctions-table-cell.center{
+    text-align: center;
+}
+
+.account-auctions-table-column-header{
+    font-weight: 600;
+    text-align: left;
+    padding: 5px 15px;
+}
+
+.account-auctions-table-column-header.center{
+    text-align: center;
+}
+
+.account-auctions-table-header {
+    background-color: $main-color-active;
+}
+
+.account-auctions-table-wrapper{
+    width: fit-content;
+}
