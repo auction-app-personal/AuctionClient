@@ -33,7 +33,7 @@ export class MockAuctionService implements AuctionService {
       startTimestamp: new Date('2024-11-25T09:00:00'),
       duration: 3,
       status: AuctionStatus.PAUSED,
-      ownerId: 3,
+      ownerId: 1,
     },
   ];
 
