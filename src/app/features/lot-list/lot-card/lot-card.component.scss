@@ -1,0 +1,37 @@
+.item-wrapper {
+  width: 60%;
+  padding: 15px 30px;
+  border-radius: 8px;
+  background-color: #253b2d;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #e9f1f7;
+}
+
+.right{
+    width: 35%;
+}
+
+.left{
+    width: 45%;
+}
+
+.item-wrapper:hover {
+  background-color: #143420;
+}
+
+.item-wrapper:active {
+  background-color: #102A1A;
+}
+
+.left h2 {
+  padding-bottom: 4px;
+  margin-bottom: 9px;
+  border-bottom: 3px solid transparent;
+  width: 60%;
+}
+
+.item-wrapper:hover > .left h2 {
+  border-bottom: 3px solid #e98a15;
+}

@@ -1,0 +1,10 @@
+<a [routerLink]="['/lots', lot.id]" class="item-wrapper">
+  <div class="left">
+    <h2>{{ lot.name }}</h2>
+    <p>{{ lot.description }}</p>
+  </div>
+  <div class="right">
+    <p><strong>Price:</strong> {{ lot.startPrice }}</p>
+    <p><strong>Status:</strong> {{ lot.status }}</p>
+  </div>
+</a>

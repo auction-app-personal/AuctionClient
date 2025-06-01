@@ -1,0 +1,86 @@
+.wrapper {
+  min-height: 90vh;
+  color: #e9f1f7;
+  display: flex;
+}
+
+.heading {
+  background-color: #253b2d;
+}
+
+.heading h1 {
+  text-transform: uppercase;
+  text-align: center;
+  padding-bottom: 32px;
+  padding-top: 40px;
+  border-bottom: 4px solid #e98a15;
+  width: 70%;
+  margin: 0 auto;
+}
+
+.lots-block {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 30px;
+}
+
+.filter-block {
+  background-color: #253b2d;
+  padding: 15px 25px;
+}
+
+.filter-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  padding-bottom: 20px;
+  padding-top: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  padding-left: 8px;
+  font-size: 16px;
+  font-weight: 350;
+}
+
+.form-group input {
+  font-size: 16px;
+}
+
+.form-group input::placeholder {
+  font-size: 16px;
+}
+
+.btn-group {
+  display: grid;
+  align-self: flex-end;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.btn-group button {
+  font-size: 16px;
+}
+
+.lots-list{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 32px 0;
+}
+
+app-lot-card{
+  width: 100%;
+  height: 100%;
+  justify-items: center;
+}

@@ -1,1 +1,34 @@
-<p>lot-list works!</p>
+<div class="wrapper">
+  <div class="lots-block">
+    <div>
+      <div class="heading">
+        <h1>Lots</h1>
+      </div>
+      <div class="filter-block">
+        <form class="filter-form">
+          <div class="form-group">
+            <label>Search by name</label>
+            <input class="form-input-green" />
+          </div>
+          <div class="form-group">
+            <label>Filter by status </label>
+            <input class="form-input-green" />
+          </div>
+          <div class="form-group">
+            <label>Filter by price</label>
+            <input class="form-input-green" />
+          </div>
+          <div class="btn-group">
+            <button class="button-green">Submit</button>
+            <button class="button-green">Reset</button>
+          </div>
+        </form>
+      </div>
+      <div class="lots-list texture-background">
+        @for(lot of lots; track lot.id){
+          <app-lot-card [lot]="lot"/>
+        }
+      </div>
+    </div>
+  </div>
+</div>
