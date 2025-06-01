@@ -1,5 +1,5 @@
 import { Inject, Injectable } from "@angular/core";
-import { ACCOUNT_SERVICE, AUCTION_SERVICE, BID_SERVICE, LOT_SERVICE } from "../common/injection-tokens";
+import { ACCOUNT_AUCTION_SERVICE, ACCOUNT_SERVICE, AUCTION_SERVICE, BID_SERVICE, LOT_SERVICE } from "../common/injection-tokens";
 import { BidService } from "../bid/bid-service.interface";
 import { AuctionService } from "../auction/auction-service.interface";
 import { LotService } from "../lot/lot-service.interface";
@@ -7,6 +7,7 @@ import { BidDto } from "../../models/bid/bid.model";
 import { catchError, filter, forkJoin, map, mergeMap, Observable, of, switchMap } from "rxjs";
 import { AccountService } from "../account/account-service.interface";
 import { AuctionDto } from "../../models/auction/auction.model";
+import { AccountAuctionService } from "../account-auction/account-auction-service.interface";
 
 @Injectable()
 export class AuctionFacadeService {
@@ -14,6 +15,7 @@ export class AuctionFacadeService {
             @Inject(BID_SERVICE) private bidService: BidService,
             @Inject(AUCTION_SERVICE) private auctionService: AuctionService,
             @Inject(ACCOUNT_SERVICE) private accountService: AccountService,
+            @Inject(ACCOUNT_AUCTION_SERVICE) private accountAuctionService: AccountAuctionService,
             @Inject(LOT_SERVICE) private lotService: LotService) {
 
             }
@@ -52,7 +54,7 @@ public getBidsByAuctionId(auctionId: number): Observable<BidDto[]> {
     );
   }
 
-  getAuctionByAccountId(accountId: number): Observable<AuctionDto[]> {
+  getAuctionsByOwnerId(accountId: number): Observable<AuctionDto[]> {
   return this.accountService.getById(accountId).pipe(
     switchMap(account =>
       this.auctionService.getAll().pipe(
@@ -61,4 +63,22 @@ public getBidsByAuctionId(auctionId: number): Observable<BidDto[]> {
       )
     );
   }
+
+getAuctionsByParticipantId(accountId: number): Observable<AuctionDto[]> {
+  return this.accountAuctionService.getAll().pipe(
+    map(relations =>
+      relations
+        .filter(relation => relation.accountId === accountId)
+        .map(relation => relation.auctionId)
+    ),
+    switchMap(auctionIds =>
+      forkJoin(auctionIds.map(id =>
+        this.auctionService.getById(id)
+      ))
+    ),
+    map(auctions =>
+      auctions.filter((a): a is AuctionDto => a !== null && a !== undefined)
+    )
+  );
+}
 }
