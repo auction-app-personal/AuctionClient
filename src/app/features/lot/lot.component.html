@@ -1,1 +1,33 @@
-<p>lot works!</p>
+<div class="wrapper">
+    @if(lot){
+    <section class="lot-info screen">
+            <div class="heading">
+                <h1>{{ lot.name }}</h1>
+            </div>
+            
+            <div class="data-block">
+                <div class="image">
+                    IMG
+                </div>
+                <div class="data">
+                    <ul>
+                        <li><span>Description: </span> {{ lot.description }}</li>
+                        <li><span>Status: </span>{{ lot.status }}</li>
+                        <li><span>Start price: </span> ({{ lot.startPrice }})</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="link-block">
+                <a [routerLink]="['/auctions', lot.auctionId]" class="auction-link">
+                    Auction
+                </a>
+            </div>
+        </section>
+    } @else {
+        <div>
+            No lot
+        </div>
+    }
+
+</div>
