@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { AuctionDto } from '../../models/auction/auction.model';
 import { AuctionCardComponent } from './auction-card/auction-card.component';
 import { AUCTION_SERVICE } from '../../services/common/injection-tokens';
-import { AuctionService } from '../../services/auction/auction-service.interface';
+import { AuctionService } from '../../services/data/auction/auction-service.interface';
 @Component({
   selector: 'app-auction-list',
   standalone: true,

@@ -1,13 +1,13 @@
 import { Inject, Injectable } from "@angular/core";
 import { ACCOUNT_AUCTION_SERVICE, ACCOUNT_SERVICE, AUCTION_SERVICE, BID_SERVICE, LOT_SERVICE } from "../common/injection-tokens";
-import { BidService } from "../bid/bid-service.interface";
-import { AuctionService } from "../auction/auction-service.interface";
-import { LotService } from "../lot/lot-service.interface";
+import { BidService } from "../data/bid/bid-service.interface";
+import { AuctionService } from "../data/auction/auction-service.interface";
+import { LotService } from "../data/lot/lot-service.interface";
 import { BidDto } from "../../models/bid/bid.model";
 import { catchError, filter, forkJoin, map, mergeMap, Observable, of, switchMap } from "rxjs";
-import { AccountService } from "../account/account-service.interface";
+import { AccountService } from "../data/account/account-service.interface";
 import { AuctionDto } from "../../models/auction/auction.model";
-import { AccountAuctionService } from "../account-auction/account-auction-service.interface";
+import { AccountAuctionService } from "../data/account-auction/account-auction-service.interface";
 
 @Injectable()
 export class AuctionFacadeService {

@@ -1,10 +1,10 @@
 import { InjectionToken } from "@angular/core";
-import { LotService } from "../lot/lot-service.interface";
-import { BidService } from "../bid/bid-service.interface";
-import { AuctionService } from "../auction/auction-service.interface";
+import { LotService } from "../data/lot/lot-service.interface";
+import { BidService } from "../data/bid/bid-service.interface";
+import { AuctionService } from "../data/auction/auction-service.interface";
 import { AuctionFacadeService } from "../shared/auction-facade.service";
-import { AccountService } from "../account/account-service.interface";
-import { AccountAuctionService } from "../account-auction/account-auction-service.interface";
+import { AccountService } from "../data/account/account-service.interface";
+import { AccountAuctionService } from "../data/account-auction/account-auction-service.interface";
 
 export const LOT_SERVICE = new InjectionToken<LotService>('LotService');
 export const BID_SERVICE = new InjectionToken<BidService>('BidService');

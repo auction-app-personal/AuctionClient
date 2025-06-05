@@ -1,6 +1,5 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { LotService } from '../../services/lot/lot-service.interface';
-import { AccountService } from '../../services/account/account-service.interface';
+import { AccountService } from '../../services/data/account/account-service.interface';
 import { ACCOUNT_SERVICE } from '../../services/common/injection-tokens';
 import { AccountDto } from '../../models/account/account.model';
 import { ActivatedRoute } from '@angular/router';

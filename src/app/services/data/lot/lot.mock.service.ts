@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { LotDto, LotStatus } from '../../models/lot/lot.model';
+import { LotDto, LotStatus } from '../../../models/lot/lot.model';
 import { Observable, of } from 'rxjs';
 import { LotService } from './lot-service.interface';
 

@@ -1,7 +1,7 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { LotDto } from '../../models/lot/lot.model';
 import { LOT_SERVICE } from '../../services/common/injection-tokens';
-import { LotService } from '../../services/lot/lot-service.interface';
+import { LotService } from '../../services/data/lot/lot-service.interface';
 import { Subscription } from 'rxjs';
 import { LotCardComponent } from './lot-card/lot-card.component';
 

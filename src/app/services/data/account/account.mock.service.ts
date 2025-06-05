@@ -1,12 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { AccountService } from './account-service.interface';
-import { AccountDto, AccountRole, Gender } from '../../models/account/account.model';
+import { AccountDto, AccountRole, Gender } from '../../../models/account/account.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MockAccountService implements AccountService {
+
+  private passwordMap: Record<string, string> = {
+    admin_alice: 'admin_alice',
+    bob_s: 'bob_s',
+    guest_charlie: 'guest_charlie',
+    diana_prince: 'diana_prince',
+    evan_w: 'evan_w',
+  }
+
   private mockAccounts: AccountDto[] = [
   {
     id: 1,
@@ -74,5 +83,32 @@ export class MockAccountService implements AccountService {
     if(oldLength === this.mockAccounts.length) return of();
 
     return of();
+  }
+
+  registerUser(username: string, password: string): number {
+    if(this.mockAccounts.filter(acc => acc.username === username).length !== 0)
+      return 1; //account exists
+    this.create(
+      {      
+        id: 0,
+        username: username,
+        role: AccountRole.USER
+    });
+    this.passwordMap[username] = password;
+    return 0;
+  }
+
+  loginUser(username: string, password: string): { user: AccountDto | null; token: string; } {
+    if(this.passwordMap[username] !== password)
+      return {user: null, token: ''}; //can't login
+
+    const user = this.mockAccounts.filter(acc => acc.username === username).at(0);
+    if(!user) 
+      return {user: null, token: ''}; //can't login
+
+    return {
+      user: user,
+      token: 'TestToken'
+    }
   }
 }

@@ -8,8 +8,8 @@ import { LotCarouselSingleComponent } from './lot-carousel-single/lot-carousel-s
 import { BiddingJournalComponent } from './bidding-journal/bidding-journal.component';
 import { BidDto } from '../../models/bid/bid.model';
 import { AUCTION_FACADE, AUCTION_SERVICE, LOT_SERVICE } from '../../services/common/injection-tokens';
-import { LotService } from '../../services/lot/lot-service.interface';
-import { AuctionService } from '../../services/auction/auction-service.interface';
+import { LotService } from '../../services/data/lot/lot-service.interface';
+import { AuctionService } from '../../services/data/auction/auction-service.interface';
 import { AuctionFacadeService } from '../../services/shared/auction-facade.service';
 import { Subscription } from 'rxjs';
 

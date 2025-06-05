@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BidDto } from '../../models/bid/bid.model';
+import { BidDto } from '../../../models/bid/bid.model';
 import { Observable, of } from 'rxjs';
 import { BidService } from './bid-service.interface';
 

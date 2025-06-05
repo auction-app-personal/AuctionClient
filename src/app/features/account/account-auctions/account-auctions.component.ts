@@ -2,7 +2,7 @@ import { Component, Inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { AuctionDto } from '../../../models/auction/auction.model';
 import { Subscription } from 'rxjs';
 import { AUCTION_FACADE, AUCTION_SERVICE } from '../../../services/common/injection-tokens';
-import { AuctionService } from '../../../services/auction/auction-service.interface';
+import { AuctionService } from '../../../services/data/auction/auction-service.interface';
 import { AuctionFacadeService } from '../../../services/shared/auction-facade.service';
 
 @Component({

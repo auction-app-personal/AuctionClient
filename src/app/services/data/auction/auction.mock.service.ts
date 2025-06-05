@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AuctionDto, AuctionStatus } from '../../models/auction/auction.model';
+import { AuctionDto, AuctionStatus } from '../../../models/auction/auction.model';
 import { AuctionService } from './auction-service.interface';
 import { Observable, of } from 'rxjs';
 

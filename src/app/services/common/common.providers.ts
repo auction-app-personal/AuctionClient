@@ -1,11 +1,11 @@
 import { Provider } from '@angular/core';
-import { MockAuctionService } from '../auction/auction.mock.service';
+import { MockAuctionService } from '../data/auction/auction.mock.service';
 import { ACCOUNT_AUCTION_SERVICE, ACCOUNT_SERVICE, AUCTION_FACADE, AUCTION_SERVICE, BID_SERVICE, LOT_SERVICE } from './injection-tokens';
-import { MockLotService } from '../lot/lot.mock.service';
-import { MockBidService } from '../bid/bid.mock.service';
+import { MockLotService } from '../data/lot/lot.mock.service';
+import { MockBidService } from '../data/bid/bid.mock.service';
 import { AuctionFacadeService } from '../shared/auction-facade.service';
-import { MockAccountService } from '../account/account.mock.service';
-import { MockAccountAuctionService } from '../account-auction/account-auction.mock.service';
+import { MockAccountService } from '../data/account/account.mock.service';
+import { MockAccountAuctionService } from '../data/account-auction/account-auction.mock.service';
 
 export function provideCommonServices(): Provider[] {
   return [

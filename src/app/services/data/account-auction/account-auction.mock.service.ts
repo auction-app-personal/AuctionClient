@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AccountAuctionService } from './account-auction-service.interface';
 import { Observable, of } from 'rxjs';
-import { AccountAuctionDto } from '../../models/account-auction/account-auction.model';
+import { AccountAuctionDto } from '../../../models/account-auction/account-auction.model';
 
 @Injectable({
   providedIn: 'root',
