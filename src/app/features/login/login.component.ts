@@ -8,6 +8,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -21,13 +22,13 @@ export class LoginComponent implements OnInit {
   loginField!: FormControl;
   passwordField!: FormControl;
 
-  constructor() {}
+  constructor(private authService: AuthService) {}
 
   onSubmit() {
-    console.log('Submitted');
-    console.log(this.loginForm);
-    console.log(this.loginField);
-    console.log(this.passwordField);
+    const login: string = this.loginForm.value["login"];
+    const password: string = this.loginForm.value["password"];
+    this.authService.login(login, password);
+
   }
 
   ngOnInit(): void {

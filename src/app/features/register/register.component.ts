@@ -9,6 +9,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -22,7 +23,8 @@ export class RegisterComponent implements OnInit {
   loginField!: FormControl;
   passwordField!: FormControl;
   repeatPasswordField!: FormControl;
-  constructor() {}
+
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
     this.registerForm = new FormGroup({
@@ -42,7 +44,9 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.registerForm)
+    const login = this.registerForm.value["login"];
+    const password = this.registerForm.value["password"];
+    this.authService.register(login, password);
   }
 
 
