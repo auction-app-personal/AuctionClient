@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { log } from 'console';
+import { Router, RouterLink } from '@angular/router';
 import {
   FormControl,
   FormGroup,
@@ -22,13 +21,18 @@ export class LoginComponent implements OnInit {
   loginField!: FormControl;
   passwordField!: FormControl;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService,
+            private router: Router
+  ) {}
 
   onSubmit() {
     const login: string = this.loginForm.value["login"];
     const password: string = this.loginForm.value["password"];
-    this.authService.login(login, password);
-
+    const errCode = this.authService.login(login, password);
+    if(errCode === -1)
+      console.log("Wrong Login");
+    else
+      this.router.navigate(['/home'])
   }
 
   ngOnInit(): void {
