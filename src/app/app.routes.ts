@@ -9,6 +9,7 @@ import { AuctionComponent } from './features/auction/auction.component';
 import { LotListComponent } from './features/lot-list/lot-list.component';
 import { LotComponent } from './features/lot/lot.component';
 import { AccountListComponent } from './features/account-list/account-list.component';
+import { AuthGuard } from './services/auth/auth.guard';
 
 export const routes: Routes = [
   {
@@ -25,32 +26,38 @@ export const routes: Routes = [
     component: RegisterComponent,
   },
   {
-    path: 'accounts',
-    component: AccountListComponent,
-  },
-  {
-    path: 'accounts/:id',
-    component: AccountComponent,
-  },
-  {
     path: 'home',
     component: HomeComponent,
   },
   {
-    path: 'auctions',
-    component: AuctionListComponent,
-  },
-  {
-    path: 'auctions/:id',
-    component: AuctionComponent,
-  },
-  {
-    path: 'lots',
-    component: LotListComponent,
-  },
-  {
-    path: 'lots/:id',
-    component: LotComponent,
+    path: '',
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: 'accounts',
+        component: AccountListComponent,
+      },
+      {
+        path: 'accounts/:id',
+        component: AccountComponent,
+      },
+      {
+        path: 'auctions',
+        component: AuctionListComponent,
+      },
+      {
+        path: 'auctions/:id',
+        component: AuctionComponent,
+      },
+      {
+        path: 'lots',
+        component: LotListComponent,
+      },
+      {
+        path: 'lots/:id',
+        component: LotComponent,
+      },
+    ]
   },
   {
     path: '**',

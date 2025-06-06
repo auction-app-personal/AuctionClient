@@ -7,6 +7,7 @@ import { AccountDto } from "../../models/account/account.model";
   providedIn: 'root',
 })
 export class AuthService {
+
   currentUser = signal<AccountDto | null | undefined>(undefined);
 
   constructor(
@@ -23,11 +24,16 @@ export class AuthService {
       user,
       token
     } = this.accountService.loginUser(username, password);
-    localStorage.setItem('Token', token);
+    localStorage.setItem('token', token);
     this.currentUser.set(user);
     console.log(this.currentUser());
     if(!this.currentUser() || token === '')
       return -1; 
     return 0;
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    this.currentUser.set(null);
   }
 }
