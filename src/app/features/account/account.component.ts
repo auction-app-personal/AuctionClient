@@ -2,9 +2,10 @@ import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { AccountService } from '../../services/data/account/account-service.interface';
 import { ACCOUNT_SERVICE } from '../../services/common/injection-tokens';
 import { AccountDto } from '../../models/account/account.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AccountAuctionsComponent } from "./account-auctions/account-auctions.component";
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-account',
@@ -20,7 +21,9 @@ export class AccountComponent implements OnInit, OnDestroy{
 
   constructor(
     @Inject(ACCOUNT_SERVICE) private accountService: AccountService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router,
+    private authService: AuthService
   )  {
     
   }
@@ -40,4 +43,8 @@ export class AccountComponent implements OnInit, OnDestroy{
     this.subscriptions.unsubscribe();
   }
 
+  logout() {
+    this.authService.logout();
+    this.router.navigate(["/home"]);
+  }
 }
