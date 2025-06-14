@@ -1,19 +1,24 @@
 <div class="account-auctions-tables-wrapper">
     <div class="account-auctions-table-wrapper">
-        <h2 class="account-auctions-table-heading">Owned Auctions</h2>
+        <div class="account-auction-table-heading-block">
+            <h2 class="account-auctions-table-heading">Owned Auctions</h2>
+            <button class="create-auction-btn">+</button>
+        </div>
         <table class="account-auctions-table">
             <thead class="account-auctions-table-header">
-
                 <th class="account-auctions-table-column-header center">Auction name</th>
                 <th class="account-auctions-table-column-header center">Status</th>
-                <th class="account-auctions-table-column-header center">Test</th>
+                <th class="account-auctions-table-column-header center"></th>
             </thead>
             <tbody>
-                @for(auction of ownedAuctions; track auction.id){
+                @for(auction of ownedAuctions(); track auction.id){
                     <tr>
                         <td class="account-auctions-table-cell">{{ auction.name }}</td>
                         <td class="account-auctions-table-cell center">{{ auction.status }}</td>
-                        <td class="account-auctions-table-cell center">{{ auction.id }}</td>
+                        <td class="account-auctions-table-cell block">
+                            <button>edit</button>
+                            <button (click)="onOwnedAuctionDelete(auction.id)">delete</button>
+                        </td>
                     </tr>
                 }
             </tbody>
@@ -26,15 +31,18 @@
             <thead class="account-auctions-table-header">
                 <th class="account-auctions-table-column-header center">Auction name</th>
                 <th class="account-auctions-table-column-header center">Status</th>
-                <th class="account-auctions-table-column-header center">Test</th>
+                <th class="account-auctions-table-column-header"></th>
             </thead>
             <tbody>
-                @for(auction of participatedAuctions; track auction.id){
+                @for(auction of participatedAuctions(); track auction.id){
                     <tr>
                         <td class="account-auctions-table-cell">{{ auction.name }}</td>
                         <td class="account-auctions-table-cell center">{{ auction.status }}</td>
-                        <td class="account-auctions-table-cell center">{{ auction.id }}</td>
-                    </tr>
+                        <td class="account-auctions-table-cell block">
+                            <button>edit</button>
+                            <button (click)="onParticipatedAuctionLeave(auction.id)">delete</button>
+                        </td>
+                    <tr>
                 }
             </tbody>
             

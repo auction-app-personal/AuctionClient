@@ -11,6 +11,7 @@ import { AccountAuctionService } from "../data/account-auction/account-auction-s
 
 @Injectable()
 export class AuctionFacadeService {
+
   constructor(
             @Inject(BID_SERVICE) private bidService: BidService,
             @Inject(AUCTION_SERVICE) private auctionService: AuctionService,
@@ -71,14 +72,36 @@ getAuctionsByParticipantId(accountId: number): Observable<AuctionDto[]> {
         .filter(relation => relation.accountId === accountId)
         .map(relation => relation.auctionId)
     ),
-    switchMap(auctionIds =>
-      forkJoin(auctionIds.map(id =>
-        this.auctionService.getById(id)
-      ))
-    ),
-    map(auctions =>
-      auctions.filter((a): a is AuctionDto => a !== null && a !== undefined)
-    )
+    switchMap(auctionIds => {
+      if (auctionIds.length === 0) return of([]);
+      return forkJoin(auctionIds.map(id => this.auctionService.getById(id)));
+    }),
+    map(auctions => auctions.filter((a): a is AuctionDto => a !== null && a !== undefined))
   );
 }
+
+  deleteAuction(auctionId: number): Observable<void> {
+    return this.lotService.getLotsByAuctionId(auctionId).pipe(
+      switchMap(lots => {
+        const deleteLotObservables = lots.map(lot => this.lotService.delete(lot.id));
+        forkJoin(deleteLotObservables).subscribe({
+          complete: () => {
+            this.auctionService.delete(auctionId)
+          }
+        }
+      )
+        return of();
+      })
+    );
+  }
+
+  leaveAuction(accountId: number, auctionId: number): Observable<void> {
+    return this.accountAuctionService.deleteByKeys(accountId, auctionId).pipe(
+      switchMap(
+        () => {
+          return of(void 0);
+        }
+      )
+    );
+  }
 }

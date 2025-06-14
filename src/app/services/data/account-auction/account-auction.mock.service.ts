@@ -48,4 +48,9 @@ export class MockAccountAuctionService implements AccountAuctionService {
     this.mockAccountAuctions = this.mockAccountAuctions.filter(relation => relation.accountId != id);
     return of();
   }
+
+  deleteByKeys(accountId: number, auctionId: number){
+    this.mockAccountAuctions = this.mockAccountAuctions.filter(relation => relation.accountId !== accountId || relation.auctionId !== auctionId);
+    return of(void 0);
+  }
 }
