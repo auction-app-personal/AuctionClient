@@ -1,4 +1,4 @@
-import { Inject, Injectable, signal } from "@angular/core";
+import { computed, Inject, Injectable, signal } from "@angular/core";
 import { ACCOUNT_SERVICE } from "../common/injection-tokens";
 import { AccountService } from "../data/account/account-service.interface";
 import { AccountDto } from "../../models/account/account.model";
@@ -7,13 +7,17 @@ import { AccountDto } from "../../models/account/account.model";
   providedIn: 'root',
 })
 export class AuthService {
-
-  currentUser = signal<AccountDto | null | undefined>(undefined);
+  private currentUserSig = signal<AccountDto | null | undefined>(undefined);
+  currentUser = computed(() => this.currentUserSig());
 
   constructor(
     @Inject(ACCOUNT_SERVICE) private accountService: AccountService) {
-
-  }
+      if (typeof window !== 'undefined' && localStorage.getItem('user')) {
+        const userId = localStorage.getItem('user');
+        if(userId === null) return;
+          this.setUserFromStorage(+userId);
+      }
+    }
 
   public register(username: string, password: string): number {
     return this.accountService.registerUser(username, password);
@@ -25,7 +29,8 @@ export class AuthService {
       token
     } = this.accountService.loginUser(username, password);
     localStorage.setItem('token', token);
-    this.currentUser.set(user);
+    localStorage.setItem('user', user!.id.toString());
+    this.currentUserSig.set(user);
     console.log(this.currentUser());
     if(!this.currentUser() || token === '')
       return -1; 
@@ -34,6 +39,15 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('token');
-    this.currentUser.set(null);
+    localStorage.removeItem('user');
+    this.currentUserSig.set(null);
+  }
+
+  private setUserFromStorage(userId: number) {
+      if(userId === null) return;
+      this.accountService.getById(+userId).subscribe(
+        (user) => this.currentUserSig.set(user)
+      )
+
   }
 }
