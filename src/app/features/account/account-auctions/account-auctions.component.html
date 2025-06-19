@@ -2,7 +2,8 @@
     <div class="account-auctions-table-wrapper">
         <div class="account-auction-table-heading-block">
             <h2 class="account-auctions-table-heading">Owned Auctions</h2>
-            <button class="create-auction-btn">+</button>
+            <button class="create-auction-btn"
+                    (click)="openAuctionModal()">+</button>
         </div>
         <table class="account-auctions-table">
             <thead class="account-auctions-table-header">
@@ -16,8 +17,8 @@
                         <td class="account-auctions-table-cell">{{ auction.name }}</td>
                         <td class="account-auctions-table-cell center">{{ auction.status }}</td>
                         <td class="account-auctions-table-cell block">
-                            <button>edit</button>
-                            <button (click)="onOwnedAuctionDelete(auction.id)">delete</button>
+                            <button (click)="editAuction()">Edit</button>
+                            <button (click)="onOwnedAuctionDelete(auction.id)">Delete</button>
                         </td>
                     </tr>
                 }
@@ -39,8 +40,7 @@
                         <td class="account-auctions-table-cell">{{ auction.name }}</td>
                         <td class="account-auctions-table-cell center">{{ auction.status }}</td>
                         <td class="account-auctions-table-cell block">
-                            <button>edit</button>
-                            <button (click)="onParticipatedAuctionLeave(auction.id)">delete</button>
+                            <button (click)="onParticipatedAuctionLeave(auction.id)">Leave</button>
                         </td>
                     <tr>
                 }
@@ -48,4 +48,9 @@
             
         </table>
     </div>
+
+    @if(isModalVisible){
+        <app-auction-form-modal (close)="hideAuctionModal()"/>
+    }
+
 </div>
