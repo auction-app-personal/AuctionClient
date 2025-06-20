@@ -1,7 +1,49 @@
 <div class="modal-overlay" (click)="closeModal()">
   <div class="modal-content" (click)="$event.stopPropagation()">
-	<h2>Modal Title</h2>
-	<p>This is the content of the modal. It can include text, images, forms, or any other Angular component.</p>
-	<button (click)="closeModal()">Close</button>
+	<h2>Create auction</h2>
+
+	<form class="login-form" [formGroup]="auctionForm" (ngSubmit)="saveAuction()">
+		<div class="login-form-input-group">
+        	<label for="name">Name</label>
+			<input
+				class="form-input-green"
+				id="name"
+				formControlName="name"
+			/>
+      	</div>
+		<div class="login-form-input-group">
+			<label for="description">Description</label>
+			<input
+				class="form-input-green"
+				id="description"
+				formControlName="description"
+			/>
+		</div>
+		<div class="login-form-input-group">
+			<label for="startTimestamp">Start Time</label>
+			<input
+				class="form-input-green"
+				id="startTimestamp"
+				formControlName="startTimestamp"
+			/>
+		</div>
+		<div class="login-form-input-group">
+			<label for="duration">Duration</label>
+			<input
+				class="form-input-green"
+				id="duration"
+				type="duration"
+				formControlName="duration"
+			/>
+		</div>
+		<div class="button-group">
+			<button class="button-green">
+			Login
+			</button>
+			<button class="button-green" (click)="closeModal()">
+			Cancel
+			</button>
+		</div>
+    </form>
   </div>
 </div>
