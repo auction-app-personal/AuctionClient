@@ -50,7 +50,7 @@
     </div>
 
     @if(isModalVisible){
-        <app-auction-form-modal (close)="hideAuctionModal()"/>
+        <app-auction-form-modal [accountId]="accountId" (close)="hideAuctionModal()" (save)="loadOwnedAuctions()"/>
     }
 
 </div>

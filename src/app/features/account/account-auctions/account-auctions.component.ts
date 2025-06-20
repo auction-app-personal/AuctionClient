@@ -70,7 +70,7 @@ export class AccountAuctionsComponent implements OnInit, OnDestroy{
     this.subscriptions.unsubscribe();
   }
 
-  private loadOwnedAuctions(){
+  loadOwnedAuctions(){
     this.auctionService.getAuctionsByOwnerId(this.accountId!).subscribe(
       (auctions) => this.ownedAuctions.set(auctions)
     );
