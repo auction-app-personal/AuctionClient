@@ -10,7 +10,7 @@ export class MockAccountService implements AccountService {
 
   private passwordMap: Record<string, string> = {
     admin_alice: 'admin_alice',
-    bob_s: 'bob_s',
+    admin: 'admin',
     guest_charlie: 'guest_charlie',
     diana_prince: 'diana_prince',
     evan_w: 'evan_w',
@@ -25,11 +25,11 @@ export class MockAccountService implements AccountService {
   },
   {
     id: 2,
-    username: "bob_s",
+    username: "admin",
     name: "Bob",
     surname: "Smith",
     gender: Gender.MALE,
-    role: AccountRole.USER
+    role: AccountRole.ADMIN
   },
   {
     id: 3,
