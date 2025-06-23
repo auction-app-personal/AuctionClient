@@ -1,9 +1,9 @@
 <div class="modal-overlay" (click)="closeModal()">
   <div class="modal-content" (click)="$event.stopPropagation()">
-	<h2>Create auction</h2>
+	<h2 class="modal-header">Create auction</h2>
 
-	<form class="login-form" [formGroup]="auctionForm" (ngSubmit)="saveAuction()">
-		<div class="login-form-input-group">
+	<form class="auction-form" [formGroup]="auctionForm" (ngSubmit)="saveAuction()">
+		<div class="auction-form-input-group">
         	<label for="name">Name</label>
 			<input
 				class="form-input-green"
@@ -11,7 +11,7 @@
 				formControlName="name"
 			/>
       	</div>
-		<div class="login-form-input-group">
+		<div class="auction-form-input-group">
 			<label for="description">Description</label>
 			<input
 				class="form-input-green"
@@ -19,7 +19,7 @@
 				formControlName="description"
 			/>
 		</div>
-		<div class="login-form-input-group">
+		<div class="auction-form-input-group">
 			<label for="startTimestamp">Start Time</label>
 			<input
 				class="form-input-green"
@@ -27,7 +27,7 @@
 				formControlName="startTimestamp"
 			/>
 		</div>
-		<div class="login-form-input-group">
+		<div class="auction-form-input-group">
 			<label for="duration">Duration</label>
 			<input
 				class="form-input-green"
@@ -37,7 +37,7 @@
 			/>
 		</div>
 		<div class="button-group">
-			<button class="button-green">
+			<button class="button-green" [disabled]="!auctionForm.valid">
 			Save
 			</button>
 			<button class="button-green" type="button" (click)="closeModal()">
