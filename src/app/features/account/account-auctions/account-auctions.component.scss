@@ -12,9 +12,17 @@
     width: 60%;
     margin: 0 auto;
     padding-top: 20px;
-    padding-bottom: 8px;
-    border-bottom: 2px solid #e98a15;
 }
+
+.account-auctions-table-heading:after{
+  content: " ";
+  margin-top: 8px;
+  display: block;
+  height: 2px;
+  background-color: #e98a15;
+  border-radius: 8px;
+}
+
 
 .account-auctions-table{
     width: 35vw;
@@ -36,6 +44,10 @@
     padding-bottom: 3px;
     padding-left: 15px;
     padding-right: 15px;
+}
+
+.account-auctions-table-cell:last-child{
+    padding: 0;
 }
 
 .account-auctions-table-cell.center{
@@ -77,4 +89,11 @@
     aspect-ratio: 1 / 1;
     font-weight: lighter;
     width: 7%;
+}
+
+.icon-block{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
 }

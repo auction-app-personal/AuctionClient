@@ -4,11 +4,12 @@ import { Subscription } from 'rxjs';
 import { AUCTION_FACADE } from '../../../services/common/injection-tokens';
 import { AuctionFacadeService } from '../../../services/shared/auction-facade.service';
 import { AuctionFormModalComponent } from "../../auction/auction-form-modal/auction-form-modal.component";
+import { IconComponent } from "../../../shared/icon/icon.component";
 
 @Component({
   selector: 'app-account-auctions',
   standalone: true,
-  imports: [AuctionFormModalComponent],
+  imports: [AuctionFormModalComponent, IconComponent],
   templateUrl: './account-auctions.component.html',
   styleUrl: './account-auctions.component.scss'
 })

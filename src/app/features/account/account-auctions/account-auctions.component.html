@@ -16,11 +16,15 @@
                     <tr>
                         <td class="account-auctions-table-cell">{{ auction.name }}</td>
                         <td class="account-auctions-table-cell center">{{ auction.status }}</td>
-                        <td class="account-auctions-table-cell block">
-                            <button class="icon-button" (click)="editAuction()">
-                                <img class="icon" src="./assets/icons/element-control-icons/edit.svg" alt="Edit"/>
-                            </button>
-                            <button (click)="onOwnedAuctionDelete(auction.id)">Delete</button>
+                        <td class="account-auctions-table-cell">
+                            <div class="icon-block">
+                                <button class="icon-button" (click)="editAuction()">
+                                    <app-icon name="edit" [size]="24"></app-icon>
+                                </button>
+                                <button class="icon-button" (click)="onOwnedAuctionDelete(auction.id)">
+                                    <app-icon name="delete" [size]="24"></app-icon>
+                                </button>
+                            </div>
                         </td>
                     </tr>
                 }
@@ -41,8 +45,12 @@
                     <tr>
                         <td class="account-auctions-table-cell">{{ auction.name }}</td>
                         <td class="account-auctions-table-cell center">{{ auction.status }}</td>
-                        <td class="account-auctions-table-cell block">
-                            <button (click)="onParticipatedAuctionLeave(auction.id)">Leave</button>
+                        <td class="account-auctions-table-cell">
+                            <div class="icon-block">
+                                <button class="icon-button" (click)="onParticipatedAuctionLeave(auction.id)">
+                                    <app-icon name="leave" [size]="24"></app-icon>
+                                </button>
+                            </div>
                         </td>
                     <tr>
                 }

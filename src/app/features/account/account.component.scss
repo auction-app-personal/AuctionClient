@@ -22,8 +22,15 @@
   margin: 0 auto;
   text-align: center;
   padding-top: 20px;
-  padding-bottom: 8px;
-  border-bottom: 4px solid #e98a15;
+}
+
+.heading h1:after{
+  content: " ";
+  margin-top: 8px;
+  display: block;
+  height: 4px;
+  background-color: #e98a15;
+  border-radius: 8px;
 }
 
 .heading p {
