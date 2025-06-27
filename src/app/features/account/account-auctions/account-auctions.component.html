@@ -3,13 +3,16 @@
         <div class="account-auction-table-heading-block">
             <h2 class="account-auctions-table-heading">Owned Auctions</h2>
             <button class="create-auction-btn"
-                    (click)="openAuctionModal()">+</button>
+                    (click)="openAuctionModal()">
+                <app-icon name="add" [color]="Color.TEXT_WHITE" [size]="24"></app-icon>
+            </button>
         </div>
         <table class="account-auctions-table">
             <thead class="account-auctions-table-header">
                 <th class="account-auctions-table-column-header center">Auction name</th>
                 <th class="account-auctions-table-column-header center">Status</th>
-                <th class="account-auctions-table-column-header center"></th>
+                <th class="account-auctions-table-column-header center">
+                </th>
             </thead>
             <tbody>
                 @for(auction of ownedAuctions(); track auction.id){
@@ -19,10 +22,10 @@
                         <td class="account-auctions-table-cell">
                             <div class="icon-block">
                                 <button class="icon-button" (click)="editAuction()">
-                                    <app-icon name="edit" [size]="24"></app-icon>
+                                    <app-icon name="edit" [color]="Color.TEXT_WHITE" [size]="24"></app-icon>
                                 </button>
                                 <button class="icon-button" (click)="onOwnedAuctionDelete(auction.id)">
-                                    <app-icon name="delete" [size]="24"></app-icon>
+                                    <app-icon name="delete" [color]="Color.TEXT_WHITE" [size]="24"></app-icon>
                                 </button>
                             </div>
                         </td>
@@ -48,7 +51,7 @@
                         <td class="account-auctions-table-cell">
                             <div class="icon-block">
                                 <button class="icon-button" (click)="onParticipatedAuctionLeave(auction.id)">
-                                    <app-icon name="leave" [size]="24"></app-icon>
+                                    <app-icon name="leave" [color]="Color.TEXT_WHITE" [size]="24"></app-icon>
                                 </button>
                             </div>
                         </td>

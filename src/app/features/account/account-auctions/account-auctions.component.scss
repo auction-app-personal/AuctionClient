@@ -81,14 +81,15 @@
     position: absolute;
     right: 3%;
     bottom: 0%;
-    font-size: 24px;
     background: #4d795d;
     border: none;
-    color: white;
     border-radius: 8px;
     aspect-ratio: 1 / 1;
     font-weight: lighter;
-    width: 7%;
+    width: 6%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .icon-block{

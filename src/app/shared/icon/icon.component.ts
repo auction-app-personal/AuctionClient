@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { Component, Input, OnChanges } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Color } from '../enums/color.enum';
 
 @Component({
@@ -21,6 +21,7 @@ export class IconComponent implements OnChanges {
     [Color.MAIN_GREEN]: '#253B2D',
     [Color.SECONDARY_GREEN]: '#355541',
     [Color.ACCENT_ORANGE]: '#E98A15',
+    [Color.TEXT_WHITE]: '#E9F1F7',
   };
 
   constructor(private http: HttpClient, private sanitizer: DomSanitizer) {}

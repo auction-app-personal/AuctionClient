@@ -5,6 +5,7 @@ import { AUCTION_FACADE } from '../../../services/common/injection-tokens';
 import { AuctionFacadeService } from '../../../services/shared/auction-facade.service';
 import { AuctionFormModalComponent } from "../../auction/auction-form-modal/auction-form-modal.component";
 import { IconComponent } from "../../../shared/icon/icon.component";
+import { Color } from "../../../shared/enums/color.enum"
 
 @Component({
   selector: 'app-account-auctions',
@@ -16,6 +17,7 @@ import { IconComponent } from "../../../shared/icon/icon.component";
 export class AccountAuctionsComponent implements OnInit, OnDestroy{
 
   private subscriptions: Subscription = new Subscription();
+  Color = Color;
 
   @Input({ required: true })
   accountId: number = 0;
