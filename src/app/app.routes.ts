@@ -10,6 +10,8 @@ import { LotListComponent } from './features/lot-list/lot-list.component';
 import { LotComponent } from './features/lot/lot.component';
 import { AccountListComponent } from './features/account-list/account-list.component';
 import { AuthGuard } from './services/auth/auth.guard';
+import { AuctionEditComponent } from './features/auction/auction-edit/auction-edit.component';
+import { LotEditComponent } from './features/lot/lot-edit/lot-edit.component';
 
 export const routes: Routes = [
   {
@@ -50,12 +52,20 @@ export const routes: Routes = [
         component: AuctionComponent,
       },
       {
+        path: 'auctions/edit/:id',
+        component: AuctionEditComponent,
+      },
+      {
         path: 'lots',
         component: LotListComponent,
       },
       {
         path: 'lots/:id',
         component: LotComponent,
+      },
+      {
+        path: 'lots/edit/:id',
+        component: LotEditComponent
       },
     ]
   },
