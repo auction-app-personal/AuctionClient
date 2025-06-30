@@ -1,0 +1,29 @@
+<div class="wrapper">
+    @if(auction){
+        <section class="auction-info screen">
+            <section class="about">
+                <div class="heading">
+                    <h1>{{ auction.name }}</h1>
+                </div>
+                <div class="auction-content">
+                    <div class="data">
+                        <ul>
+                        <li><span>Description: </span> {{ auction.description }}</li>
+                        <li><span>Duration: </span>{{ auction.duration }}</li>
+                        <li><span>Start: </span> {{ auction.startTimestamp }}</li>
+                        <li><span>Status: </span>{{ auction.status }}</li>
+                        </ul>
+                    </div>
+                    <div class="auction-lots">
+                        Lot block
+                    </div>
+                </div>
+            </section>
+        </section>
+    } @else {
+        <div>
+            No auction
+        </div>
+    }
+
+</div>
