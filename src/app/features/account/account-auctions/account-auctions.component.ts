@@ -6,6 +6,7 @@ import { AuctionFacadeService } from '../../../services/shared/auction-facade.se
 import { AuctionFormModalComponent } from "../../auction/auction-form-modal/auction-form-modal.component";
 import { IconComponent } from "../../../shared/icon/icon.component";
 import { Color } from "../../../shared/enums/color.enum"
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-account-auctions',
@@ -26,7 +27,8 @@ export class AccountAuctionsComponent implements OnInit, OnDestroy{
   participatedAuctions = signal<AuctionDto[]>([]);
   isModalVisible = false;
 
-  constructor(@Inject(AUCTION_FACADE) private auctionService: AuctionFacadeService){
+  constructor(@Inject(AUCTION_FACADE) private auctionService: AuctionFacadeService,
+              private router: Router){
     
   }
 
@@ -65,8 +67,8 @@ export class AccountAuctionsComponent implements OnInit, OnDestroy{
 	  this.isModalVisible = false;
   }
 
-  editAuction(): void {
-    
+  editAuction(auctionId: number): void {
+    this.router.navigate(['/auctions/edit/', auctionId]);
   }
 
   ngOnDestroy(): void {

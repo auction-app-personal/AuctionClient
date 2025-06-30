@@ -21,7 +21,7 @@
                         <td class="account-auctions-table-cell center">{{ auction.status }}</td>
                         <td class="account-auctions-table-cell">
                             <div class="icon-block">
-                                <button class="icon-button" (click)="editAuction()">
+                                <button class="icon-button" (click)="editAuction(auction.id)">
                                     <app-icon name="edit" [color]="Color.TEXT_WHITE" [size]="24"></app-icon>
                                 </button>
                                 <button class="icon-button" (click)="onOwnedAuctionDelete(auction.id)">
