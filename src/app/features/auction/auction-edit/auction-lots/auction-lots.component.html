@@ -1,0 +1,44 @@
+<div class="auction-lots-tables-wrapper">
+    <div class="auction-lots-table-wrapper">
+        <div class="account-auction-table-heading-block">
+            <h2 class="auction-lots-table-heading">Lots</h2>
+            <button class="create-auction-btn"
+                    (click)="openAuctionModal()">
+                <app-icon name="add" [color]="Color.TEXT_WHITE" [size]="24"></app-icon>
+            </button>
+        </div>
+        <table class="auction-lots-table">
+            <thead class="auction-lots-table-header">
+                <th class="auction-lots-table-column-header center">Image</th>
+                <th class="auction-lots-table-column-header center">Lot name</th>
+                <th class="auction-lots-table-column-header center">Status</th>
+                <th class="auction-lots-table-column-header center">
+                </th>
+            </thead>
+            <tbody>
+                @for(lot of lots(); track lot.id){
+                    <tr>
+                        <td class="auction-lots-table-cell">Img</td>
+                        <td class="auction-lots-table-cell">{{ lot.name }}</td>
+                        <td class="auction-lots-table-cell center">{{ lot.status }}</td>
+                        <td class="auction-lots-table-cell">
+                            <div class="icon-block">
+                                <button class="icon-button" (click)="editLot(lot.id)">
+                                    <app-icon name="edit" [color]="Color.TEXT_WHITE" [size]="24"></app-icon>
+                                </button>
+                                <button class="icon-button" (click)="onLotDelete(lot.id)">
+                                    <app-icon name="delete" [color]="Color.TEXT_WHITE" [size]="24"></app-icon>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    @if(isModalVisible){
+        <app-lot-form-modal [auctionId]="auctionId" (close)="hideAuctionModal()" (save)="loadLots()"/>
+    }
+
+</div>

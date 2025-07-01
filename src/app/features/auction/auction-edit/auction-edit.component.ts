@@ -7,11 +7,12 @@ import { AuthService } from '../../../services/auth/auth.service';
 import { ACCOUNT_SERVICE, AUCTION_SERVICE } from '../../../services/common/injection-tokens';
 import { AccountService } from '../../../services/data/account/account-service.interface';
 import { AuctionService } from '../../../services/data/auction/auction-service.interface';
+import { AuctionLotsComponent } from "./auction-lots/auction-lots.component";
 
 @Component({
   selector: 'app-auction-edit',
   standalone: true,
-  imports: [],
+  imports: [AuctionLotsComponent],
   templateUrl: './auction-edit.component.html',
   styleUrl: './auction-edit.component.scss'
 })

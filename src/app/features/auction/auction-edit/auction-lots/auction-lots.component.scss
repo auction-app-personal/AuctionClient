@@ -1,0 +1,100 @@
+@import "../../../../../variables";
+
+.auction-lots-tables-wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10vw;
+}
+
+.auction-lots-table-heading{
+    text-align: center;
+    width: 60%;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+
+.auction-lots-table-heading:after{
+  content: " ";
+  margin-top: 8px;
+  display: block;
+  height: 2px;
+  background-color: #e98a15;
+  border-radius: 8px;
+}
+
+
+.auction-lots-table{
+    width: 35vw;
+    color: $text-white;
+    font-size: 18px;
+    font-weight: 200;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 8px; /* your desired radius */
+    overflow: hidden;   /* ensure corners are clipped */
+    border: 6px solid $main-color-active;
+    margin-top: 10px;
+}
+
+.auction-lots-table-cell{
+    border-bottom: 2px solid $main-color-active;
+    border-right: 2px solid $main-color-active;
+    padding-top: 8px;
+    padding-bottom: 3px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.auction-lots-table-cell:last-child{
+    padding: 0;
+}
+
+.auction-lots-table-cell.center{
+    text-align: center;
+}
+
+.auction-lots-table-column-header{
+    font-weight: 600;
+    text-align: left;
+    padding: 5px 15px;
+}
+
+.auction-lots-table-column-header.center{
+    text-align: center;
+}
+
+.auction-lots-table-header {
+    background-color: $main-color-active;
+    
+}
+
+.auction-lots-table-wrapper{
+    width: fit-content;
+}
+
+.account-auction-table-heading-block{    
+    position: relative;
+}
+
+.create-auction-btn{
+    position: absolute;
+    right: 3%;
+    bottom: 0%;
+    background: #4d795d;
+    border: none;
+    border-radius: 8px;
+    aspect-ratio: 1 / 1;
+    font-weight: lighter;
+    width: 6%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon-block{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+}

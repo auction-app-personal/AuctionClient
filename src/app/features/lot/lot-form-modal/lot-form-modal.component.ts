@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-lot-form-modal',
@@ -8,5 +8,6 @@ import { Component } from '@angular/core';
   styleUrl: './lot-form-modal.component.scss'
 })
 export class LotFormModalComponent {
-
+@Input({required: true})
+auctionId!: number;
 }
