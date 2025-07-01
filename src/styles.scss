@@ -75,6 +75,10 @@ h1 {
   min-height: 100vh;
 }
 
+.screen:first-of-type{
+  min-height: 90vh;
+}
+
 .modal-open{
   overflow: hidden;
 }
