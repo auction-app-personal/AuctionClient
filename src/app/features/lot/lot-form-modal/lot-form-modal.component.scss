@@ -1,0 +1,63 @@
+@import '../../../../variables';
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(1px);
+}
+
+.modal-content {
+  background-color: $main-color;
+  color: #E9F1F7;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  width: fit-content;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.lot-form-input-group{
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  width: 100%;
+  gap: 3px;
+}
+
+.lot-form{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal-header{
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  text-align: center;
+  padding-bottom: 4px;
+  border-bottom: 2px solid #e98a15;
+}
+
+.button-group {
+  display: flex;
+  justify-content: end;
+  gap: 5px;
+}
+
+.button-group button{
+  width: 30%;
+}
+
+.button-group button:disabled,
+.button-group button[disabled]{
+  opacity: 0.4;
+  cursor: default;
+}

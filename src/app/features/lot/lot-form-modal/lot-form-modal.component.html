@@ -1,1 +1,40 @@
-<p>lot-form-modal works!</p>
+<div class="modal-overlay" (click)="closeModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+	<h2 class="modal-header">Create lot</h2>
+
+	<form class="lot-form" [formGroup]="lotForm" (ngSubmit)="saveLot()">
+		<div class="lot-form-input-group">
+        	<label for="name">Name</label>
+			<input
+				class="form-input-green"
+				id="name"
+				formControlName="name"
+			/>
+      	</div>
+		<div class="lot-form-input-group">
+			<label for="description">Description</label>
+			<input
+				class="form-input-green"
+				id="description"
+				formControlName="description"
+			/>
+		</div>
+		<div class="lot-form-input-group">
+			<label for="startPrice">Start Price</label>
+			<input
+				class="form-input-green"
+				id="startPrice"
+				formControlName="startPrice"
+			/>
+		</div>
+		<div class="button-group">
+			<button class="button-green" [disabled]="!lotForm.valid">
+			Save
+			</button>
+			<button class="button-green" type="button" (click)="closeModal()">
+			Cancel
+			</button>
+		</div>
+    </form>
+  </div>
+</div>
