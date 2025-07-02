@@ -96,3 +96,26 @@ h1 {
   width: 24px;
   height: 24px;
 }
+
+.create-element-btn{
+    position: absolute;
+    right: 3%;
+    bottom: 0%;
+    background: $main-color-active;
+    border: none;
+    border-radius: 8px;
+    aspect-ratio: 1 / 1;
+    font-weight: lighter;
+    width: 6%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.create-element-btn:hover{
+    background-color: $main-color-hover;
+}
+
+.create-element-btn:active{
+    background-color: $main-color-active-dark;
+}

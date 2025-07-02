@@ -19,11 +19,9 @@
   margin-top: 8px;
   display: block;
   height: 2px;
-  background-color: #e98a15;
+  background-color: $accent-color;
   border-radius: 8px;
 }
-
-
 .account-auctions-table{
     width: 35vw;
     color: $text-white;
@@ -75,21 +73,6 @@
 
 .account-auction-table-heading-block{    
     position: relative;
-}
-
-.create-auction-btn{
-    position: absolute;
-    right: 3%;
-    bottom: 0%;
-    background: #4d795d;
-    border: none;
-    border-radius: 8px;
-    aspect-ratio: 1 / 1;
-    font-weight: lighter;
-    width: 6%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .icon-block{
