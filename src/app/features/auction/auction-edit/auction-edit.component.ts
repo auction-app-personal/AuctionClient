@@ -2,21 +2,22 @@ import { Component, Inject } from '@angular/core';
 import { AuctionDto } from '../../../models/auction/auction.model';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
-import { Router } from 'express';
-import { AuthService } from '../../../services/auth/auth.service';
-import { ACCOUNT_SERVICE, AUCTION_SERVICE } from '../../../services/common/injection-tokens';
-import { AccountService } from '../../../services/data/account/account-service.interface';
+import { AUCTION_SERVICE } from '../../../services/common/injection-tokens';
 import { AuctionService } from '../../../services/data/auction/auction-service.interface';
 import { AuctionLotsComponent } from "./auction-lots/auction-lots.component";
+import { IconComponent } from "../../../shared/icon/icon.component";
+import { Color } from '../../../shared/enums/color.enum';
 
 @Component({
   selector: 'app-auction-edit',
   standalone: true,
-  imports: [AuctionLotsComponent],
+  imports: [AuctionLotsComponent, IconComponent],
   templateUrl: './auction-edit.component.html',
   styleUrl: './auction-edit.component.scss'
 })
 export class AuctionEditComponent {
+
+  Color = Color;
   auction: AuctionDto | null = null;
   private subscriptions: Subscription = new Subscription();
 

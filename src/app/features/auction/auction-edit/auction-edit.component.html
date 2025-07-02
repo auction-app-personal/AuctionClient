@@ -1,7 +1,6 @@
 <div class="wrapper">
     @if(auction){
         <section class="auction-info screen">
-            <section class="about">
                 <div class="heading">
                     <h1>{{ auction.name }}</h1>
                 </div>
@@ -13,12 +12,19 @@
                         <li><span>Start: </span> {{ auction.startTimestamp }}</li>
                         <li><span>Status: </span>{{ auction.status }}</li>
                         </ul>
+                        <app-icon name="edit" [color]="Color.TEXT_WHITE" [size]="24"></app-icon>
                     </div>
                     <div class="auction-lots">
                         <app-auction-lots [auctionId]="auction.id"></app-auction-lots>
                     </div>
                 </div>
-            </section>
+                <div class="auction-control-pane">
+                    <button>Start/Pause Auction</button>
+                    <button>Finish Auction</button>
+                    <p>Participants: </p>
+                    <p>Total collected: </p>
+                    <p>Time remaining: </p>
+                </div>
         </section>
     } @else {
         <div>
