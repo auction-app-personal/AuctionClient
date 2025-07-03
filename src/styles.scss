@@ -119,3 +119,28 @@ h1 {
 .create-element-btn:active{
     background-color: $main-color-active-dark;
 }
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(1px);
+  z-index: 1;
+}
+
+.modal-content {
+  background-color: $main-color;
+  color: #E9F1F7;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  width: fit-content;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  z-index: 2;
+}
