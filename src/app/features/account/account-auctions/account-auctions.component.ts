@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnDestroy, OnInit, signal } from '@angular/core';
+import { Component, Inject, Input, OnChanges, OnDestroy, OnInit, signal, SimpleChanges } from '@angular/core';
 import { AuctionDto } from '../../../models/auction/auction.model';
 import { Subscription } from 'rxjs';
 import { AUCTION_FACADE } from '../../../services/common/injection-tokens';
@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
   templateUrl: './account-auctions.component.html',
   styleUrl: './account-auctions.component.scss'
 })
-export class AccountAuctionsComponent implements OnInit, OnDestroy{
+export class AccountAuctionsComponent implements OnInit, OnChanges, OnDestroy{
 
   private subscriptions: Subscription = new Subscription();
   Color = Color;
@@ -35,6 +35,10 @@ export class AccountAuctionsComponent implements OnInit, OnDestroy{
   ngOnInit(): void {
     this.loadOwnedAuctions();
     this.loadParticipatedAuctions();
+  }
+
+  ngOnChanges(): void {
+    this.ngOnInit();
   }
 
   onOwnedAuctionDelete(auctionId: number): void {

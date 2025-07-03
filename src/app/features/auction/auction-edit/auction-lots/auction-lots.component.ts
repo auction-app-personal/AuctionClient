@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnInit, signal } from '@angular/core';
+import { Component, Inject, Input, OnChanges, OnInit, signal, SimpleChanges } from '@angular/core';
 import { Color } from '../../../../shared/enums/color.enum';
 import { IconComponent } from "../../../../shared/icon/icon.component";
 import { LotDto } from '../../../../models/lot/lot.model';
@@ -15,7 +15,7 @@ import { LotFormModalComponent } from "../../../lot/lot-form-modal/lot-form-moda
   templateUrl: './auction-lots.component.html',
   styleUrl: './auction-lots.component.scss'
 })
-export class AuctionLotsComponent implements OnInit{
+export class AuctionLotsComponent implements OnInit, OnChanges{
   @Input({ required: true })
   auctionId: number = 0;
   
@@ -32,6 +32,10 @@ export class AuctionLotsComponent implements OnInit{
 
   ngOnInit(): void {
     this.loadLots();
+  }
+
+  ngOnChanges(): void {
+    this.ngOnInit()
   }
 
   onLotDelete(lotId: number): void {
