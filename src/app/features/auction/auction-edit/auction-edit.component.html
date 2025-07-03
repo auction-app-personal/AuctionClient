@@ -18,12 +18,27 @@
                         <app-auction-lots [auctionId]="auction.id"></app-auction-lots>
                     </div>
                 </div>
-                <div class="auction-control-pane">
-                    <button>Start/Pause Auction</button>
-                    <button>Finish Auction</button>
-                    <p>Participants: </p>
-                    <p>Total collected: </p>
-                    <p>Time remaining: </p>
+                <div class="auction-control-panel">
+                    <div class="button-group">
+                        @if(auctionStatusHelper.isCreated(auction)){
+                            <button (click)="changeAuctionStatus(AuctionStatus.STARTED)">Start Auction</button>
+                        } @else if(auctionStatusHelper.isPaused(auction)){
+                            <button (click)="changeAuctionStatus(AuctionStatus.STARTED)">Resume Auction</button>
+                        } @else if(auctionStatusHelper.isActive(auction)) {
+                            <button (click)="changeAuctionStatus(AuctionStatus.PAUSED)">Pause Auction</button>
+                        }
+
+                        @if(auctionStatusHelper.isActive(auction) || auctionStatusHelper.isPaused(auction)){
+                            <button (click)="changeAuctionStatus(AuctionStatus.ENDED)">Finish Auction</button>
+                        } @else {
+                            <button (click)="deleteAuction()">Delete Auction</button>
+                        }
+                    </div>
+                    <div class="stats-group">
+                        <p>Participants: {{paricipants}}</p>
+                        <p>Total collected: {{totalCollected}}</p>
+                        <p>Time remaining: {{timeRemaining | date:'HH:mm:ss'}}</p>
+                    </div>
                 </div>
         </section>
     } @else {

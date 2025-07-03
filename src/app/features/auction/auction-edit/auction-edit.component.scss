@@ -73,14 +73,34 @@
     font-weight: 400;
 }
 
-.auction-control-pane{
-  width: 70vw;
-  height: 10vh;
+.auction-control-panel{
+  padding: 10px 32px;
+  width: 40vw;
+  height: fit-content;
   margin: 0 auto;
   position: absolute;
   z-index: 0;
-  left: 15vw;
+  left: 30vw;
   bottom: 10vh;
   background-color: $main-color-active;
   border-radius: 8px;
+
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+}
+
+
+.auction-control-panel .button-group{
+  justify-self: center;
+  align-self: center;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.auction-control-panel .stats-group{
+  margin-left: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }

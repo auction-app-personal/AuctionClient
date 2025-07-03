@@ -8,6 +8,7 @@ import { catchError, filter, forkJoin, map, mergeMap, Observable, of, switchMap 
 import { AccountService } from "../data/account/account-service.interface";
 import { AuctionDto } from "../../models/auction/auction.model";
 import { AccountAuctionService } from "../data/account-auction/account-auction-service.interface";
+import { AccountDto } from "../../models/account/account.model";
 
 @Injectable()
 export class AuctionFacadeService {
@@ -103,5 +104,20 @@ getAuctionsByParticipantId(accountId: number): Observable<AuctionDto[]> {
         }
       )
     );
+  }
+
+  getParticipantsByAuctionId(auctionId: number): Observable<AccountDto[]> {
+    return this.accountAuctionService.getAll().pipe(
+      map(
+        records => records
+                    .filter(record => record.auctionId === auctionId)
+                    .map(record => record.accountId)
+      ),
+      switchMap(accountIds => {
+        if (accountIds.length === 0) return of([]);
+        return forkJoin(accountIds.map(id => this.accountService.getById(id)));
+      }),
+      map(auctions => auctions.filter((a): a is AccountDto => a !== null && a !== undefined))
+    )
   }
 }
