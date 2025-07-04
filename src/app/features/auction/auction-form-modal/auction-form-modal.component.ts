@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AUCTION_SERVICE } from '../../../services/common/injection-tokens';
 import { AuctionService } from '../../../services/data/auction/auction-service.interface';
-import { AuctionStatus } from '../../../models/auction/auction.model';
+import { AuctionDto, AuctionStatus } from '../../../models/auction/auction.model';
 
 @Component({
   selector: 'app-auction-form-modal',
@@ -13,47 +13,41 @@ import { AuctionStatus } from '../../../models/auction/auction.model';
 })
 export class AuctionFormModalComponent implements OnInit {
 
-  @Input({required: true}) accountId = 0;
+  @Input({required: true}) accountId!: number;
+  @Input({required: false}) auction: AuctionDto | null = null;
   @Output() close = new EventEmitter<void>();
   @Output() save = new EventEmitter<void>();
 
 
   auctionForm!: FormGroup;
-  auctionName!: FormControl;
-  auctionDescr!: FormControl;
-  auctionStartTimestamp!: FormControl;
-  auctionDuration!: FormControl;
 
-  constructor(@Inject(AUCTION_SERVICE) private auctionService: AuctionService){
-
+  constructor(@Inject(AUCTION_SERVICE) private auctionService: AuctionService,
+              private fb: FormBuilder){
   }
 
-  ngOnInit(): void {
-    this.auctionForm = new FormGroup({
-      name: new FormControl(this.auctionName, [Validators.required]),
-      description: new FormControl(this.auctionDescr),
-      startTimestamp: new FormControl(this.auctionStartTimestamp),
-      duration: new FormControl(this.auctionDuration),
+  ngOnInit(): void {    
+    this.auctionForm = this.fb.group({
+      name: [this.auction?.name ?? '', Validators.required],
+      description: [this.auction?.description ?? ''],
+      startTimestamp: [this.auction?.startTimestamp ?? null],
+      duration: [this.auction?.duration ?? null],
     });
   }
 
   saveAuction(): void {
-    this.auctionService.create({
-      id: 0,
-      name: this.auctionForm.value["name"],
-      description: this.auctionForm.value["description"],
-      startTimestamp: this.auctionForm.value["startTimestamp"],
-      duration: this.auctionForm.value["duration"],
-      status: AuctionStatus.CREATED,
-      ownerId: this.accountId
+    this.auctionService.save({
+      id: this.auction?.id ?? 0,
+      name: this.auctionForm.get("name")?.value,
+      description: this.auctionForm.get("description")?.value,
+      startTimestamp: this.auctionForm.get("startTimestamp")?.value,
+      duration: this.auctionForm.get("duration")?.value,
+      status: this.auction?.status ?? AuctionStatus.CREATED,
+      ownerId: this.auction?.ownerId ?? this.accountId
     }).subscribe(
       (value) => {
-        if(value.id === 0){
-          console.log('fail')
-        } else {
-          this.save.emit()
-          this.close.emit();
-        }
+        if(value.id !== 0) this.save.emit()
+
+        this.close.emit();
       }
     );
   }

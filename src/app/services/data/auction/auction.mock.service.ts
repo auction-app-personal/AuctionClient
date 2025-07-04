@@ -57,6 +57,14 @@ export class MockAuctionService implements AuctionService {
     Object.assign(oldItem, item);
     return of(oldItem);
   }
+
+  save(item: AuctionDto): Observable<AuctionDto>{
+    if(item.id && item.id !== 0)
+      return this.update(item.id, item);
+    else 
+      return this.create(item);
+  }
+
   delete(id: number): Observable<void> {
     const oldLength = this.mockAuctions.length;
     this.mockAuctions = this.mockAuctions.filter(auction => auction.id != id);

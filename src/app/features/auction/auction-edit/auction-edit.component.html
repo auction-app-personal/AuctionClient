@@ -12,7 +12,9 @@
                         <li><span>Start: </span> {{ auction.startTimestamp }}</li>
                         <li><span>Status: </span>{{ auction.status }}</li>
                         </ul>
-                        <app-icon name="edit" [color]="Color.TEXT_WHITE" [size]="24"></app-icon>
+                        <button class="icon-button" (click)="openAuctionModal()">
+                            <app-icon name="edit" [color]="Color.TEXT_WHITE" [size]="24"></app-icon>
+                        </button>
                     </div>
                     <div class="auction-lots">
                         <app-auction-lots [auctionId]="auction.id"></app-auction-lots>
@@ -41,6 +43,10 @@
                     </div>
                 </div>
         </section>
+        @if(isModalVisible){
+            <app-auction-form-modal [accountId]="auction.ownerId" [auction]="auction" (close)="hideAuctionModal()" (save)="reloadAuction()"/>
+        }
+
     } @else {
         <div>
             No auction

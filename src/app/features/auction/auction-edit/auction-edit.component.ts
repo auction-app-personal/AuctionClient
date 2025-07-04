@@ -9,16 +9,16 @@ import { IconComponent } from "../../../shared/icon/icon.component";
 import { Color } from '../../../shared/enums/color.enum';
 import { DatePipe, Location } from '@angular/common';
 import { AuctionFacadeService } from '../../../services/shared/auction-facade.service';
+import { AuctionFormModalComponent } from "../auction-form-modal/auction-form-modal.component";
 
 @Component({
   selector: 'app-auction-edit',
   standalone: true,
-  imports: [AuctionLotsComponent, IconComponent, DatePipe],
+  imports: [AuctionLotsComponent, IconComponent, DatePipe, AuctionFormModalComponent],
   templateUrl: './auction-edit.component.html',
   styleUrl: './auction-edit.component.scss'
 })
 export class AuctionEditComponent {
-
   Color = Color;
   AuctionStatus = AuctionStatus;
 
@@ -30,6 +30,7 @@ export class AuctionEditComponent {
   timeRemaining: Date = new Date();
 
   private subscriptions: Subscription = new Subscription();
+  isModalVisible: boolean = false;
 
   constructor(
     @Inject(AUCTION_SERVICE) private auctionService: AuctionService,
@@ -60,6 +61,26 @@ export class AuctionEditComponent {
       }
     });
     this.subscriptions.add(routeSubscription);
+  }
+
+  reloadAuction() {
+    if(!this.auction) return;
+    
+    this.auctionService.getById(this.auction?.id).subscribe(
+      auction => {
+        this.auction = auction;
+      }
+    )
+  }
+
+  hideAuctionModal() {
+    document.body.classList.remove('modal-open');
+    this.isModalVisible = false;
+  }
+
+  openAuctionModal() {
+    document.body.classList.add('modal-open');
+    this.isModalVisible = true;
   }
 
   changeAuctionStatus(status: AuctionStatus){

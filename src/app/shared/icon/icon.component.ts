@@ -61,7 +61,6 @@ export class IconComponent implements OnInit{
 }
 
   private renderSvg(): void{
-    console.log(2)
       const styledSvg = this.rawSvg
         .replace('<svg', `<svg width="${this.size}" 
                                 height="${this.size}" 
