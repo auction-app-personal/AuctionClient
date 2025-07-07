@@ -1,1 +1,33 @@
-<p>lot-edit works!</p>
+<div class="wrapper">
+    @if(lot){
+        <section class="lot-info screen">
+                <div class="heading">
+                    <h1>{{ lot.name }}</h1>
+                </div>
+                <div class="lot-content">
+                    <div class="data">
+                        <ul>
+                        <li><span>Description: </span> {{ lot.description }}</li>
+                        <li><span>Duration: </span>{{ lot.startPrice }}</li>
+                        <li><span>Status: </span>{{ lot.status }}</li>
+                        </ul>
+                        <button class="icon-button" (click)="openLotModal()">
+                            <app-icon name="edit" [color]="Color.TEXT_WHITE" [size]="24"></app-icon>
+                        </button>
+                    </div>
+                    <div class="lot-images">
+                        <!-- <app-lot-images [lotId]="lot.id"></app-lot-images> -->
+                    </div>
+                </div>
+        </section>
+        @if(isModalVisible){
+            <app-lot-form-modal [auctionId]="lot.auctionId" [lot]="lot" (close)="hideLotModal()" (save)="reloadLot()"/>
+        }
+
+    } @else {
+        <div>
+            No lot
+        </div>
+    }
+
+</div>

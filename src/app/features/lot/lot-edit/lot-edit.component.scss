@@ -1,0 +1,107 @@
+@import "../../../../variables";
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 90vh;
+}
+
+.lot-info{
+    background-color: $main-color;
+    color: #e9f1f7;
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+}
+
+.lot-content{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.heading h1 {
+  width: 60%;
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 20px;
+}
+
+.heading h1:after{
+  content: " ";
+  margin-top: 8px;
+  display: block;
+  height: 4px;
+  background-color: #e98a15;
+  border-radius: 8px;
+}
+
+.heading p {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.lot-lots{
+  width: 50%;
+}
+
+.data {
+  width: 35vw;
+  padding: 16px 32px;
+  padding-right: 16px;
+  margin: 0 auto;
+  font-size: 18px;
+  background-color: $main-color-active;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  gap:8px;
+}
+
+.data ul {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  gap: 16px 64px;
+  align-items: flex-start;
+  justify-items: left;
+  width: 100%;
+}
+
+.data span{
+    font-weight: 400;
+}
+
+.lot-control-panel{
+  padding: 10px 32px;
+  width: 40vw;
+  height: fit-content;
+  margin: 0 auto;
+  position: absolute;
+  z-index: 0;
+  left: 30vw;
+  bottom: 10vh;
+  background-color: $main-color-active;
+  border-radius: 8px;
+
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+}
+
+
+.lot-control-panel .button-group{
+  justify-self: center;
+  align-self: center;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.lot-control-panel .stats-group{
+  margin-left: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
