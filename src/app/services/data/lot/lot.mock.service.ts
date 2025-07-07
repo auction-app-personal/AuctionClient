@@ -100,6 +100,14 @@ export class MockLotService implements LotService{
     return of();
   }
 
+  save(lot: LotDto): Observable<LotDto> {
+    if(lot.id){
+      return this.update(lot.id, lot);
+    } else {
+      return this.create(lot);
+    }
+  }
+
   public getLotsByAuctionId(auctionId: number) {
     return of(this.lots.filter((x) => x.auctionId === auctionId));
   }

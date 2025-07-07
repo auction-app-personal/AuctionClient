@@ -7,7 +7,6 @@ import { AccountDto, AccountRole, Gender } from '../../../models/account/account
   providedIn: 'root',
 })
 export class MockAccountService implements AccountService {
-
   private passwordMap: Record<string, string> = {
     admin_alice: 'admin_alice',
     admin: 'admin',
@@ -83,6 +82,14 @@ export class MockAccountService implements AccountService {
     if(oldLength === this.mockAccounts.length) return of();
 
     return of();
+  }
+
+  save(account: AccountDto): Observable<AccountDto> {
+    if(account.id){
+      return this.update(account.id, account);
+    } else {
+      return this.create(account);
+    }
   }
 
   registerUser(username: string, password: string): number {

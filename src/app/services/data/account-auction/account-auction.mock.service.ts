@@ -53,4 +53,8 @@ export class MockAccountAuctionService implements AccountAuctionService {
     this.mockAccountAuctions = this.mockAccountAuctions.filter(relation => relation.accountId !== accountId || relation.auctionId !== auctionId);
     return of(void 0);
   }
+
+  save(accountAuction: AccountAuctionDto): Observable<AccountAuctionDto> {
+    return of();
+  }
 }

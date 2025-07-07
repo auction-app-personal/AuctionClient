@@ -93,6 +93,15 @@ public delete(id: number): Observable<void> {
   return of();
 }
 
+  save(bid: BidDto): Observable<BidDto> {
+    if(bid.id){
+      return this.update(bid.id, bid);
+    } else {
+      return this.create(bid);
+    }
+  }
+
+
   public getBidsByLotId(lotId: number): Observable<BidDto[]> {
     return of(this.bids.filter((x) => x.lotId === lotId));
   }
