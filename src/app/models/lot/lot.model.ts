@@ -12,3 +12,10 @@ export interface LotDto {
     status: LotStatus;
     auctionId: number;
 }
+
+export interface LotImageDto{
+  id: number;
+  src: string;
+  description: string;
+  lotId: number;
+}

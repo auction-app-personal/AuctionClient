@@ -1,0 +1,39 @@
+<div class="lot-images-tables-wrapper">
+    <div class="lot-images-table-wrapper">
+        <div class="lot-images-table-heading-block">
+            <h2 class="lot-images-table-heading">Images</h2>
+            <!-- <button class="create-element-btn"
+                    (click)="openAuctionModal()">
+                <app-icon name="add" [color]="Color.TEXT_WHITE" [hoverColor]="Color.TEXT_WHITE" [size]="24"></app-icon>
+            </button> -->
+        </div>
+        <table class="lot-images-table">
+            <thead class="lot-images-table-header">
+                <th class="lot-images-table-column-header center">Image</th>
+                <th class="lot-images-table-column-header center">Description</th>
+                <th class="lot-images-table-column-header center">
+                </th>
+            </thead>
+            <tbody>
+                @for(image of images(); track image.id){
+                    <tr>
+                        <td class="lot-images-table-cell">Img</td>
+                        <td class="lot-images-table-cell center">{{ image.description }}</td>
+                        <td class="lot-images-table-cell">
+                            <div class="icon-block">
+                                <button class="icon-button" >
+                                    <app-icon name="delete" [color]="Color.TEXT_WHITE" [size]="24"></app-icon>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <!-- @if(isModalVisible){
+        <app-lot-form-modal [auctionId]="auctionId" (close)="hideAuctionModal()" (save)="loadLots()"/>
+    } -->
+
+</div>

@@ -1,0 +1,83 @@
+@import "../../../../../variables";
+
+.lot-images-tables-wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10vw;
+}
+
+.lot-images-table-heading{
+    text-align: center;
+    width: 60%;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+
+.lot-images-table-heading:after{
+  content: " ";
+  margin-top: 8px;
+  display: block;
+  height: 2px;
+  background-color: $accent-color;
+  border-radius: 8px;
+}
+.lot-images-table{
+    width: 35vw;
+    color: $text-white;
+    font-size: 18px;
+    font-weight: 200;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 8px; /* your desired radius */
+    overflow: hidden;   /* ensure corners are clipped */
+    border: 6px solid $main-color-active;
+    margin-top: 10px;
+}
+
+.lot-images-table-cell{
+    border-bottom: 2px solid $main-color-active;
+    border-right: 2px solid $main-color-active;
+    padding-top: 8px;
+    padding-bottom: 3px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.lot-images-table-cell:last-child{
+    padding: 0;
+}
+
+.lot-images-table-cell.center{
+    text-align: center;
+}
+
+.lot-images-table-column-header{
+    font-weight: 600;
+    text-align: left;
+    padding: 5px 15px;
+}
+
+.lot-images-table-column-header.center{
+    text-align: center;
+}
+
+.lot-images-table-header {
+    background-color: $main-color-active;
+    
+}
+
+.lot-images-table-wrapper{
+    width: fit-content;
+}
+
+.lot-images-table-heading-block{    
+    position: relative;
+}
+
+.icon-block{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+}

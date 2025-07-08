@@ -9,11 +9,12 @@ import { AUCTION_FACADE, LOT_SERVICE } from '../../../services/common/injection-
 import { AuctionFacadeService } from '../../../services/shared/auction-facade.service';
 import { Location } from '@angular/common';
 import { IconComponent } from "../../../shared/icon/icon.component";
+import { LotImagesComponent } from "./lot-images/lot-images.component";
 
 @Component({
   selector: 'app-lot-edit',
   standalone: true,
-  imports: [LotFormModalComponent, IconComponent],
+  imports: [LotFormModalComponent, IconComponent, LotImagesComponent],
   templateUrl: './lot-edit.component.html',
   styleUrl: './lot-edit.component.scss'
 })
