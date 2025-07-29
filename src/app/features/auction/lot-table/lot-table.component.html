@@ -1,5 +1,8 @@
 <div class="table">
   @for(lot of lots; track $index){
-  <app-lot-item-expandable [lot]="lot" />
+  <app-lot-item-expandable [lot]="lot" (click)="openBidModal(lot.id)" />
   }
 </div>
+  @if(isModalVisible){
+    <app-bid-form-modal [lotId]="chosenLotId" (close)="hideBidModal()" (save)="reloadView()"/>
+  }

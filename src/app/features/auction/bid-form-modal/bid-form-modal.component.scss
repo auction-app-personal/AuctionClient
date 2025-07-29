@@ -1,0 +1,40 @@
+@import '../../../../variables';
+
+.bid-form-input-group{
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  width: 100%;
+  gap: 3px;
+}
+
+.bid-form{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal-header{
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  text-align: center;
+  padding-bottom: 4px;
+  border-bottom: 2px solid #e98a15;
+}
+
+.button-group {
+  display: flex;
+  justify-content: end;
+  gap: 5px;
+}
+
+.button-group button{
+  width: 30%;
+}
+
+.button-group button:disabled,
+.button-group button[disabled]{
+  opacity: 0.4;
+  cursor: default;
+}

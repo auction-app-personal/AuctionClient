@@ -1,1 +1,25 @@
-<p>bid-form-modal works!</p>
+<div class="modal-overlay" (click)="closeModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+	<h2 class="modal-header">Place bid</h2>
+
+	<form class="bid-form" [formGroup]="bidForm" (ngSubmit)="placeBid()">
+		<div class="bid-form-input-group">
+        	<label for="amount">Amount</label>
+			<input
+				class="form-input-green"
+				id="amount"
+				formControlName="amount"
+			/>
+      	</div>
+
+		<div class="button-group">
+			<button class="button-green" [disabled]="!bidForm.valid">
+			Bid
+			</button>
+			<button class="button-green" type="button" (click)="closeModal()">
+			Cancel
+			</button>
+		</div>
+    </form>
+  </div>
+</div>
