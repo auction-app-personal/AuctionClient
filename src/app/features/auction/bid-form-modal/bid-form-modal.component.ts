@@ -3,6 +3,7 @@ import { BidDto } from '../../../models/bid/bid.model';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AUCTION_FACADE } from '../../../services/common/injection-tokens';
 import { AuctionFacadeService } from '../../../services/shared/auction-facade.service';
+import { AuthService } from '../../../services/auth/auth.service';
 
 @Component({
   selector: 'app-bid-form-modal',
@@ -21,6 +22,7 @@ export class BidFormModalComponent {
   bidForm!: FormGroup;
 
   constructor(@Inject(AUCTION_FACADE) private auctionFacade: AuctionFacadeService,
+              private authService: AuthService,
               private fb: FormBuilder){
 
   }
@@ -32,16 +34,17 @@ export class BidFormModalComponent {
   }
 
   placeBid(): void {
-    // this.auctionFacade.placeBid().subscribe(
-    //   (value) => {
-    //     if(value.id === 0){
-    //       console.log('fail')
-    //       return;
-    //     }
-    //     this.save.emit();
-    //     this.close.emit();
-    //   }
-    // );
+    
+    this.auctionFacade.placeBid(this.authService.currentUser()?.id ?? 0, this.lotId, this.bidForm.get("amount")?.value).subscribe(
+      (value) => {
+        if(value.id === 0){
+          console.log('fail')
+          return;
+        }
+        this.save.emit();
+        this.close.emit();
+      }
+    );
   }
 
   closeModal(): void {

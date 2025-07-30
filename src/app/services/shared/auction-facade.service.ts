@@ -120,4 +120,31 @@ getAuctionsByParticipantId(accountId: number): Observable<AuctionDto[]> {
       map(auctions => auctions.filter((a): a is AccountDto => a !== null && a !== undefined))
     )
   }
+
+public placeBid(accountId: number, lotId: number, amount: number): Observable<BidDto> {
+  return forkJoin({
+    account: this.accountService.getById(accountId),
+    lot: this.lotService.getById(lotId)
+  }).pipe(
+    switchMap(({ account, lot }) => {
+      if (!account || !lot) {
+        throw new Error("Account or Lot not found");
+      }
+
+      const bid: BidDto = {
+        accountId: accountId,
+        accountName: account.name ?? '',
+        amount,
+        currency: 'UAH',
+        id: 0,
+        lotId: lotId,
+        lotName: lot.name ?? '',
+        timeCreated: new Date().toISOString()
+      };
+
+      return this.bidService.save(bid);
+    })
+  );
+}
+
 }

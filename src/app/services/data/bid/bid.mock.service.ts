@@ -94,7 +94,7 @@ public delete(id: number): Observable<void> {
 }
 
   save(bid: BidDto): Observable<BidDto> {
-    if(bid.id){
+    if(bid.id && bid.id !== 0){
       return this.update(bid.id, bid);
     } else {
       return this.create(bid);
