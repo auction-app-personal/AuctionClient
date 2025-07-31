@@ -62,7 +62,13 @@ export class AuctionComponent implements OnInit, OnDestroy {
       .getLotsByAuctionId(this.auctionId)
       .subscribe((value) => this.lots = value);
 
-    const bidSub = this.auctionFacade.getBidsByAuctionId(this.auctionId)
+    const updateBidSub = this.auctionFacade.bidJournal$.subscribe(
+      (bids) => {
+        this.bids = bids
+      }
+    );
+
+    const initialBidSub = this.auctionFacade.getBidsByAuctionId(this.auctionId)
       .subscribe((value) => this.bids = value);
 
     const totalCollectedSub = this.auctionFacade.getTotalCurrentMoneyCollected(this.auctionId)
@@ -71,8 +77,10 @@ export class AuctionComponent implements OnInit, OnDestroy {
       this.subscription.add(routeSubscription);
       this.subscription.add(auctionSub);
       this.subscription.add(lotSub);
-      this.subscription.add(bidSub);
+      this.subscription.add(initialBidSub);
       this.subscription.add(totalCollectedSub);
+      this.subscription.add(updateBidSub);
+
     }
 
   joinAuction() {

@@ -4,7 +4,7 @@ import { BidService } from "../data/bid/bid-service.interface";
 import { AuctionService } from "../data/auction/auction-service.interface";
 import { LotService } from "../data/lot/lot-service.interface";
 import { BidDto } from "../../models/bid/bid.model";
-import { catchError, filter, forkJoin, map, mergeMap, Observable, of, switchMap } from "rxjs";
+import { BehaviorSubject, catchError, filter, forkJoin, map, mergeMap, Observable, of, switchMap, take, tap } from "rxjs";
 import { AccountService } from "../data/account/account-service.interface";
 import { AuctionDto } from "../../models/auction/auction.model";
 import { AccountAuctionService } from "../data/account-auction/account-auction-service.interface";
@@ -12,7 +12,9 @@ import { AccountDto } from "../../models/account/account.model";
 
 @Injectable()
 export class AuctionFacadeService {
-
+  private bidJournalSubject = new BehaviorSubject<BidDto[]>([]);
+  public readonly bidJournal$ = this.bidJournalSubject.asObservable();
+  
   constructor(
             @Inject(BID_SERVICE) private bidService: BidService,
             @Inject(AUCTION_SERVICE) private auctionService: AuctionService,
@@ -121,30 +123,52 @@ getAuctionsByParticipantId(accountId: number): Observable<AuctionDto[]> {
     )
   }
 
-public placeBid(accountId: number, lotId: number, amount: number): Observable<BidDto> {
-  return forkJoin({
-    account: this.accountService.getById(accountId),
-    lot: this.lotService.getById(lotId)
-  }).pipe(
-    switchMap(({ account, lot }) => {
-      if (!account || !lot) {
-        throw new Error("Account or Lot not found");
-      }
+  public placeBid(accountId: number, lotId: number, amount: number): Observable<BidDto> {
+    return forkJoin({
+      account: this.accountService.getById(accountId),
+      lot: this.lotService.getById(lotId)
+    }).pipe(
+      switchMap(({ account, lot }) => {
+        if (!account || !lot) {
+          throw new Error("Account or Lot not found");
+        }
 
-      const bid: BidDto = {
-        accountId: accountId,
-        accountName: account.name ?? '',
-        amount,
-        currency: 'UAH',
-        id: 0,
-        lotId: lotId,
-        lotName: lot.name ?? '',
-        timeCreated: new Date().toISOString()
-      };
+        const bid: BidDto = {
+          accountId: accountId,
+          accountName: account.name ?? '',
+          amount,
+          currency: 'UAH',
+          id: 0,
+          lotId: lotId,
+          lotName: lot.name ?? '',
+          timeCreated: new Date().toISOString()
+        };
 
-      return this.bidService.save(bid);
-    })
-  );
+        return this.bidService.save(bid);
+      }),
+      tap(bid=> {
+        this.addToJournal(lotId, bid);
+      })
+    );
+  }
+
+  private addToJournal(lotId: number, bid: BidDto): void {
+    this.lotService.getById(lotId).pipe(
+      switchMap(lot => {
+        if (!lot) return of([]);
+        return this.getBidsByAuctionId(lot.auctionId);
+      }),
+      tap(existingBids => {
+        const alreadyExists = existingBids.some(b => b.id === bid.id);
+        if (!alreadyExists) {
+          this.bidJournalSubject.next([...existingBids, bid]);
+        } else {
+          this.bidJournalSubject.next([...existingBids]);
+        }
+      }),
+      take(1) // auto-unsubscribe
+    ).subscribe();
+  }
+
 }
 
-}
