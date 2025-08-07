@@ -13,8 +13,7 @@ import { AccountService } from '../../../services/data/account/account-service.i
 })
 export class AccountFormModalComponent {
 
-  @Input({required: true}) auctionId!: number;
-  @Input({required: false}) account: AccountDto | null = null;
+  @Input({required: true}) account: AccountDto | null = null;
   @Output() close = new EventEmitter<void>();
   @Output() save = new EventEmitter<void>();
 
@@ -42,7 +41,7 @@ export class AccountFormModalComponent {
       username: this.account?.username ?? '',
       name: this.accountForm.get("name")?.value,
       surname: this.accountForm.get("surname")?.value,
-      email: this.accountForm.get("email")?.value ?? this.auctionId,
+      email: this.accountForm.get("email")?.value,
       dob: this.accountForm.get("birthday")?.value,
       gender: this.accountForm.get("gender")?.value ?? Gender.OTHER,
       role: this.account?.role ?? AccountRole.USER

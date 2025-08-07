@@ -13,6 +13,9 @@
                         <li><span>Email: </span>{{ account.email }}</li>
                         <li><span>Role: </span>{{ account.role }}</li>
                         </ul>
+                        <button class="icon-button" (click)="openAccountModal()">
+                            <app-icon name="edit" [color]="Color.TEXT_WHITE" [size]="24"></app-icon>
+                        </button>
                     </div>
                 </div>
                 <div class="account-auctions">
@@ -23,6 +26,9 @@
                 </div>
             </section>
         </section>
+        @if(isModalVisible){
+            <app-account-form-modal [account]="account" (close)="hideAccountModal()" (save)="reloadInfo()"/>
+        }
     } @else {
         <div>
             No account

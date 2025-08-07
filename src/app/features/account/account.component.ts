@@ -6,17 +6,22 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AccountAuctionsComponent } from "./account-auctions/account-auctions.component";
 import { AuthService } from '../../services/auth/auth.service';
+import { AccountFormModalComponent } from "./account-form-modal/account-form-modal.component";
+import { IconComponent } from "../../shared/icon/icon.component";
+import { Color } from '../../shared/enums/color.enum';
 
 @Component({
   selector: 'app-account',
   standalone: true,
-  imports: [AccountAuctionsComponent],
+  imports: [AccountAuctionsComponent, AccountFormModalComponent, IconComponent],
   templateUrl: './account.component.html',
   styleUrl: './account.component.scss'
 })
 export class AccountComponent implements OnInit, OnDestroy{
   account: AccountDto | null = null;
   private subscriptions: Subscription = new Subscription();
+  isModalVisible: boolean = false;
+  Color = Color;
 
 
   constructor(
@@ -46,5 +51,23 @@ export class AccountComponent implements OnInit, OnDestroy{
   logout() {
     this.authService.logout();
     this.router.navigate(["/home"]);
+  }
+
+  hideAccountModal() {
+    document.body.classList.remove('modal-open');
+    this.isModalVisible = false;
+  }
+
+  openAccountModal() {
+    document.body.classList.add('modal-open');
+    this.isModalVisible = true;
+  }
+
+  reloadInfo() {
+    if(!this.account) return;
+
+    this.accountService.getById(this.account.id).subscribe(
+      account => this.account = account
+    )
   }
 }
