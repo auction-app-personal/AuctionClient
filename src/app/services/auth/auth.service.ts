@@ -28,18 +28,21 @@ export class AuthService {
       user,
       token
     } = this.accountService.loginUser(username, password);
-    localStorage.setItem('token', token);
-    localStorage.setItem('user', user!.id.toString());
+    if (typeof window !== 'undefined' && window.localStorage) {
+      localStorage.setItem('token', token);
+      localStorage.setItem('user', user!.id.toString());
+    }
     this.currentUserSig.set(user);
-    console.log(this.currentUser());
     if(!this.currentUser() || token === '')
       return -1; 
     return 0;
   }
 
   logout() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
+    if (typeof window !== 'undefined' && window.localStorage) {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+    }
     this.currentUserSig.set(null);
   }
 
