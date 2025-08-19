@@ -48,11 +48,6 @@ export class AccountComponent implements OnInit, OnDestroy{
     this.subscriptions.unsubscribe();
   }
 
-  logout() {
-    this.authService.logout();
-    this.router.navigate(["/home"]);
-  }
-
   hideAccountModal() {
     document.body.classList.remove('modal-open');
     this.isModalVisible = false;

@@ -1,5 +1,5 @@
 import { Component, OnInit, signal } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 import { AccountDto } from '../../models/account/account.model';
 
@@ -12,7 +12,11 @@ import { AccountDto } from '../../models/account/account.model';
 })
 export class HeaderComponent {
 
-  constructor(public authService: AuthService){
+  constructor(public authService: AuthService, private router: Router){
   }
 
+  logout() {
+    this.authService.logout();
+    this.router.navigate(["/home"]);
+  }
 }

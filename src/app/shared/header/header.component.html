@@ -8,8 +8,17 @@
       <li><a routerLink="/home">Home</a></li>
       @if(authService.currentUser() !== null && authService.currentUser() !== undefined){
         <li><a routerLink="/auctions">Auctions</a></li>
-        <li ><a routerLink="/lots">Lots</a></li>
-        <li><a [routerLink]="'/accounts/' + authService.currentUser()?.id ">My Account</a></li>
+        <li><a routerLink="/lots">Lots</a></li>
+
+        <li class="dropdown">
+          <a class="dropbtn">Dropdown 
+            <i class="fa fa-caret-down"></i>
+          </a>
+          <div class="dropdown-content">
+            <a [routerLink]="'/accounts/' + authService.currentUser()?.id ">My Account</a>
+            <a (click)="logout()">Logout</a>
+          </div>
+        </li>
       } @else {
         <li><a routerLink="/login">Log In</a></li>
       }
