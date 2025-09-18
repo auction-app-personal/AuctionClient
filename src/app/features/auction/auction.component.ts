@@ -11,7 +11,8 @@ import { AUCTION_FACADE, AUCTION_SERVICE, LOT_SERVICE } from '../../services/com
 import { LotService } from '../../services/data/lot/lot-service.interface';
 import { AuctionService } from '../../services/data/auction/auction-service.interface';
 import { AuctionFacadeService } from '../../services/shared/auction-facade.service';
-import { Subscription } from 'rxjs';
+import { map, Subscription } from 'rxjs';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-auction',
@@ -21,6 +22,7 @@ import { Subscription } from 'rxjs';
     LotTableComponent,
     LotCarouselSingleComponent,
     BiddingJournalComponent,
+    DatePipe
   ],
   templateUrl: './auction.component.html',
   styleUrl: './auction.component.scss',
@@ -62,14 +64,21 @@ export class AuctionComponent implements OnInit, OnDestroy {
       .getLotsByAuctionId(this.auctionId)
       .subscribe((value) => this.lots = value);
 
-    const updateBidSub = this.auctionFacade.bidJournal$.subscribe(
+    const updateBidSub = this.auctionFacade.bidJournal$.pipe(
+        map(bids => [...bids].sort((a, b) => 
+          new Date(b.timeCreated ?? 0).getTime() - new Date(a.timeCreated ?? 0).getTime()
+      ))
+    ).subscribe(
       (bids) => {
-        this.bids = bids
+        this.bids = bids;
       }
     );
 
-    const initialBidSub = this.auctionFacade.getBidsByAuctionId(this.auctionId)
-      .subscribe((value) => this.bids = value);
+    const initialBidSub = this.auctionFacade.getBidsByAuctionId(this.auctionId).pipe(
+        map(bids => [...bids].sort((a, b) => 
+          new Date(b.timeCreated ?? 0).getTime() - new Date(a.timeCreated ?? 0).getTime()
+      ))
+    ).subscribe((value) => this.bids = value);
 
     const totalCollectedSub = this.auctionFacade.getTotalCurrentMoneyCollected(this.auctionId)
       .subscribe((value) => this.totalCollected = value);

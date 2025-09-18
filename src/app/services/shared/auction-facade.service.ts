@@ -141,7 +141,7 @@ getAuctionsByParticipantId(accountId: number): Observable<AuctionDto[]> {
           id: 0,
           lotId: lotId,
           lotName: lot.name ?? '',
-          timeCreated: new Date().toISOString()
+          timeCreated: new Date()
         };
 
         return this.bidService.save(bid);

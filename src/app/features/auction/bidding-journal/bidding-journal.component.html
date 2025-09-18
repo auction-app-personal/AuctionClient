@@ -13,7 +13,7 @@
                 <td class="bidding-journal-cell">{{ bid.accountName }}</td>
                 <td class="bidding-journal-cell">{{ bid.lotName }}</td>
                 <td class="bidding-journal-cell center">{{ bid.amount }} {{ bid.currency }}</td>
-                <td class="bidding-journal-cell center">{{ bid.timeCreated }}</td>
+                <td class="bidding-journal-cell center">{{ bid.timeCreated | date:"dd/MM/yyyy 'at' HH:mm" }} </td>
             </tr>
         }
     </tbody>

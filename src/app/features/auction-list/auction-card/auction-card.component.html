@@ -5,7 +5,7 @@
   </div>
   <div class="right">
     <p><strong>Owner:</strong> {{ auction.ownerId }}</p>
-    <p><strong>Starts date:</strong> {{ auction.startTimestamp }}</p>
+    <p><strong>Start time:</strong> {{ auction.startTimestamp | date:"dd/MM/yyyy 'at' HH:mm" }}</p>
     <p><strong>Duration:</strong> {{ auction.duration }}</p>
     <p><strong>Status:</strong> {{ auction.status }}</p>
   </div>

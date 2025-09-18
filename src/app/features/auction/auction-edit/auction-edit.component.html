@@ -9,7 +9,7 @@
                         <ul>
                         <li><span>Description: </span> {{ auction.description }}</li>
                         <li><span>Duration: </span>{{ auction.duration }}</li>
-                        <li><span>Start: </span> {{ auction.startTimestamp }}</li>
+                        <li><span>Start: </span> {{ auction.startTimestamp | date:"dd/MM/yyyy 'at' HH:mm"}}</li>
                         <li><span>Status: </span>{{ auction.status }}</li>
                         </ul>
                         <button class="icon-button" (click)="openAuctionModal()">

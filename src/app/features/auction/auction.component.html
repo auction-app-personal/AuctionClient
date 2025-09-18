@@ -10,7 +10,7 @@
           <!-- make it show leftower time in real-time -->
           <li>Owner: {{ auction.ownerId }}</li>
           <!-- link to user acc -->
-          <li>Start: {{ auction.startTimestamp }}</li>
+          <li>Start: {{ auction.startTimestamp | date:"dd/MM/yyyy 'at' HH:mm"}}</li>
           <li>Status: {{ auction.status }}</li>
         </ul>
       </div>

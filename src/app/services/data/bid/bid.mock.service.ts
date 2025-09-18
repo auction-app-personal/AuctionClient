@@ -18,7 +18,7 @@ export class MockBidService extends LocalStorageService<BidDto> implements BidSe
       [
         {
           id: 1,
-          timeCreated: null,
+          timeCreated: new Date(2025, 9,18,18,22,12),
           lotId: 1,
           lotName: "Lot 1" ,
           accountId: 1,
