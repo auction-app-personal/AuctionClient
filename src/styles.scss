@@ -53,6 +53,12 @@ h1 {
   font-size: 20px;
   color: $text-white;
   letter-spacing: 1.5px;
+  min-width: 250px;
+  height: 36px;
+}
+
+select.form-input-green{
+  border-right: 8px solid rgba(0,0,0,0);
 }
 
 .form-input-green::placeholder {

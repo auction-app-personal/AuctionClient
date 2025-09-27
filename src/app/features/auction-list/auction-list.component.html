@@ -5,27 +5,38 @@
         <h1>Auctions</h1>
       </div>
       <div class="filter-block">
-        <form class="filter-form">
+	      <form class="filter-form" [formGroup]="filterForm">
           <div class="form-group">
             <label>Search by name</label>
-            <input class="form-input-green" />
+            <input class="form-input-green"
+                   formControlName="searchName" />
           </div>
           <div class="form-group">
             <label>Filter by status </label>
-            <input class="form-input-green" />
+            <input class="form-input-green" 
+                   formControlName="filterStatus" />
+
           </div>
           <div class="form-group">
-            <label>Sort by date</label>
-            <input class="form-input-green" />
+            <label for="sort-by">Sort by:</label>
+            <select name="sort-by" 
+                    class="form-input-green"
+                    formControlName="sortBy" >
+              <div>
+                <option>Name</option>
+                <option>Date</option>
+                <option>Duration</option>
+              </div>
+            </select>
           </div>
           <div class="btn-group">
-            <button class="button-green">Submit</button>
-            <button class="button-green">Reset</button>
+            <button class="button-green" type="submit">Submit</button>
+            <button class="button-green" type="reset">Reset</button>
           </div>
         </form>
       </div>
       <div class="auctions-list texture-background">
-        @for(auction of auctions; track $index){
+        @for(auction of auctions(); track $index){
           <app-auction-card [auction]="auction"/>
         }
       </div>
