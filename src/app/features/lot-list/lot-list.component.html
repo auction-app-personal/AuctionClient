@@ -5,27 +5,54 @@
         <h1>Lots</h1>
       </div>
       <div class="filter-block">
-        <form class="filter-form">
+        <form class="filter-form" [formGroup]="filterForm">
           <div class="form-group">
-            <label>Search by name</label>
-            <input class="form-input-green" />
+            <label>Search:</label>
+            <input class="form-input-green"
+                   formControlName="searchName"
+                   placeholder="Enter lot name" />
           </div>
           <div class="form-group">
-            <label>Filter by status </label>
-            <input class="form-input-green" />
+            <label>Status:</label>
+            <select class="form-input-green" 
+                    formControlName="filterStatus" >
+              <div>
+                <option>All</option>
+                <option>SOLD</option>
+                <option>AWAITING_AUCTION</option>
+                <option>CURRENTLY_AUCTIONED</option>
+              </div>
+            </select>
           </div>
           <div class="form-group">
-            <label>Filter by price</label>
-            <input class="form-input-green" />
+            <label for="sort-by">Order by:</label>
+            <select name="sort-by" 
+                    class="form-input-green"
+                    formControlName="sortBy" >
+              <div>
+                <option>Name</option>
+                <option>Price</option>
+              </div>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="sort-dir">Sort direction:</label>
+            <select name="sort-dir" 
+                    class="form-input-green"
+                    formControlName="sortDir" >
+              <div>
+                <option>asc</option>
+                <option>desc</option>
+              </div>
+            </select>
           </div>
           <div class="btn-group">
-            <button class="button-green">Submit</button>
-            <button class="button-green">Reset</button>
+            <button class="button-green" type="reset">Reset</button>
           </div>
         </form>
       </div>
       <div class="lots-list texture-background">
-        @for(lot of lots; track lot.id){
+        @for(lot of processedLots(); track lot.id){
           <app-lot-card [lot]="lot"/>
         }
       </div>

@@ -57,7 +57,7 @@ nav ul li .dropdown-content {
   top: 100%; /* directly under the button */
   left: 0;
   background-color: $main-color;
-  min-width: 160px;
+  width: max-content;
   border-radius: 6px;
   box-shadow: 0px 8px 16px rgba(0,0,0,0.3);
   z-index: 1000;
