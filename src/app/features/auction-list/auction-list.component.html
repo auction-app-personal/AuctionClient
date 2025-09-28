@@ -13,9 +13,16 @@
           </div>
           <div class="form-group">
             <label>Filter by status </label>
-            <input class="form-input-green" 
-                   formControlName="filterStatus" />
-
+            <select class="form-input-green" 
+                    formControlName="filterStatus" >
+              <div>
+                <option>All</option>
+                <option>Created</option>
+                <option>Paused</option>
+                <option>Started</option>
+                <option>Ended</option>
+              </div>
+            </select>
           </div>
           <div class="form-group">
             <label for="sort-by">Sort by:</label>
@@ -29,14 +36,24 @@
               </div>
             </select>
           </div>
+          <div class="form-group">
+            <label for="sort-dir">Sort direction:</label>
+            <select name="sort-dir" 
+                    class="form-input-green"
+                    formControlName="sortDir" >
+              <div>
+                <option>asc</option>
+                <option>desc</option>
+              </div>
+            </select>
+          </div>
           <div class="btn-group">
-            <button class="button-green" type="submit">Submit</button>
             <button class="button-green" type="reset">Reset</button>
           </div>
         </form>
       </div>
       <div class="auctions-list texture-background">
-        @for(auction of auctions(); track $index){
+        @for(auction of processedAuctions(); track $index){
           <app-auction-card [auction]="auction"/>
         }
       </div>
