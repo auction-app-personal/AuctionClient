@@ -18,16 +18,17 @@
         }
       <p>Status: {{ lot.status }}</p>
     </div>
-    <form class="bid-form">
+    <form class="bid-form" [formGroup]="bidForm" (ngSubmit)="placeBid()">
       <div class="input-group">
         <label>Make a bid</label>
         <input
           type="number"
           class="form-input-green"
-          placeholder="Enter bid amount (USD)"
+          formControlName="amount"
+          placeholder="Enter bid amount"
         />
       </div>
-      <button class="bid button-green">Bid</button>
+      <button class="bid button-green" type="submit">Bid</button>
     </form>
   </div>
 </div>
