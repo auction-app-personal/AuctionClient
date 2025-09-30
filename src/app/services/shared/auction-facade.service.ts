@@ -170,5 +170,35 @@ getAuctionsByParticipantId(accountId: number): Observable<AuctionDto[]> {
     ).subscribe();
   }
 
+  highestBidInfoForLot$(lotId: number): Observable<{account: AccountDto | null, bid: BidDto | null}> {
+    return this.bidJournal$.pipe(
+      map(bids =>
+        bids
+          .filter(b => b.lotId === lotId)
+      ),
+      map(bids => {
+        if (bids.length === 0) return null;
+        return bids.reduce((max, curr) => curr.amount > max.amount ? curr : max);
+      }),
+      switchMap(highestBid =>
+        highestBid
+          ? this.accountService.getById(highestBid.accountId).pipe(
+              map(account => ({
+                account: account,
+                bid: highestBid
+              }))
+            )
+          : of({ account: null, bid: null })
+      )
+    );
+  }
+
+  initAuctionBids(auctionId: number): void {
+    this.getBidsByAuctionId(auctionId).pipe(
+      take(1)
+    ).subscribe(bids => {
+      this.bidJournalSubject.next(bids);
+    });
+  }
 }
 

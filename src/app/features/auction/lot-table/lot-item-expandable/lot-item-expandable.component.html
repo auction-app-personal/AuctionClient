@@ -1,3 +1,5 @@
+@let info = highestBidInfo$ | async;
+
 <div class="lot-wrapper">
   <div class="image-wrapper">
     <img
@@ -8,6 +10,10 @@
   </div>
   <div class="lot-text">
     <p class="lot-name">{{ lot.name }}</p>
-    <p class="highest-bidder">Highest bidder:</p>
+    @if (info && info?.account) {
+      <p class="highest-bidder">Highest bidder: {{ info.account?.name }} ({{ info.bid?.amount }} {{ info.bid?.currency }})</p>
+    } @else {
+      <p class="highest-bidder">No bids yet</p>
+    }
   </div>
 </div>

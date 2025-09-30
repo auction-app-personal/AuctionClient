@@ -57,6 +57,8 @@ export class AuctionComponent implements OnInit, OnDestroy {
       }
     });
 
+    this.auctionFacade.initAuctionBids(this.auctionId);
+    
     const auctionSub = this.auctionService.getById(this.auctionId)
       .subscribe((value) => this.auction = value);
 

@@ -1,3 +1,5 @@
+@let info = highestBidInfo$ | async;
+
 <div class="item-wrapper">
   <img
     class="lot-img"
@@ -8,8 +10,12 @@
     <h3>{{ lot.name }}</h3>
     <div class="detail-group">
       <p>{{ lot.description }}</p>
-      <p>Start Price/highest bid: {{ lot.startPrice }} USD</p>
-      <p>Bidder name: ___</p>
+        @if (info && info?.account) {
+          <p>Highest bidder: {{ info.account?.name }} ({{ info.bid?.amount }} {{ info.bid?.currency }})</p>
+        } @else {
+          <p>Start Price: {{ lot.startPrice }}</p>
+          <p>No bids yet</p>
+        }
       <p>Status: {{ lot.status }}</p>
     </div>
     <form class="bid-form">
