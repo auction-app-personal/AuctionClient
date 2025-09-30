@@ -29,8 +29,4 @@ export class LotTableComponent {
     this.chosenLotId = lotId;
     this.isModalVisible = true;
   }
-
-  reloadView() {
-    throw new Error('Method not implemented.');
-  }
 }
