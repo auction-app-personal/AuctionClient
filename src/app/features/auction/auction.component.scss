@@ -1,5 +1,37 @@
 @import "../../../variables";
 
+app-bidding-journal{
+  margin: 0 auto;
+  display: block;
+  height: 80vh;
+  overflow: auto;
+  width: fit-content;
+}
+
+/* Width of the scrollbar */
+app-bidding-journal::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track (background of scrollbar) */
+app-bidding-journal::-webkit-scrollbar-track {
+  background: $main-color;
+  border-radius: 8px;
+  margin-top: 5vh;
+  margin-bottom: 1vh;
+}
+
+/* Thumb (the draggable part) */
+app-bidding-journal::-webkit-scrollbar-thumb {
+  background: $accent-color;
+  border-radius: 8px;
+}
+
+/* Thumb on hover */
+app-bidding-journal::-webkit-scrollbar-thumb:hover {
+  background: $accent-color-hover;
+}
+
 .wrapper {
   display: flex;
   flex-direction: column;
