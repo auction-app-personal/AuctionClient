@@ -8,23 +8,19 @@
         <ul>
           <li>Duration: {{ auction.duration }} min</li>
           <!-- make it show leftower time in real-time -->
-          <li>Owner: {{ auction.ownerId }}</li>
+          <li>Owner: {{ owner?.name }}</li>
           <!-- link to user acc -->
           <li>Start: {{ auction.startTimestamp | date:"dd/MM/yyyy 'at' HH:mm"}}</li>
-          <li>Status: {{ auction.status }}</li>
         </ul>
       </div>
     </div>
   </section>
-  <!-- @if(lots){
-  <section class="lot-preview">
+  @if(AuctionStatusHelpers.isCreated(auction)){
+  <section class="lot-preview screen">
     <h2>Lot preview</h2>
-    <app-lot-preview [lots]="lots" />
+    <app-lot-preview [lots]="lots!" />
   </section>
-  } -->
-  <!-- <section class="join">
-      <button (click)="joinAuction()" class="button-green">Join auction</button>
-  </section> -->
+  } @else if(AuctionStatusHelpers.isActive(auction)) {
   <section class="lots">
     <div class="lot-view">
       <div class="lot-view-header">
@@ -48,16 +44,24 @@
       </div>
     </div>
   </section>
-  <section class="bidding-journal screen">
-    <div class="bidding-journal-header">
-      <h2>Bidding journal</h2>
-    </div>
-    <app-bidding-journal [bids]="bids"/>
-    <div class="bidding-journal-footer">
-      <span>Time Remaining: </span>
-      <span>Total money collected: {{ this.totalCollected }}</span>
-    </div>
-  </section>
+  }
+  <!-- <section class="join">
+      <button (click)="joinAuction()" class="button-green">Join auction</button>
+  </section> -->
+
+  @if(AuctionStatusHelpers.isActive(auction)){
+    <section class="bidding-journal screen">
+      <div class="bidding-journal-header">
+        <h2>Bidding journal</h2>
+      </div>
+      <app-bidding-journal [bids]="bids"/>
+      <div class="bidding-journal-footer">
+        <span>Time Remaining: </span>
+        <span>Total money collected: {{ this.totalCollected }}</span>
+      </div>
+    </section>
+  }
+
   } @else {
   <section class="no-auction screen">No auction</section>
   }

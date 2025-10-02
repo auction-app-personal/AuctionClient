@@ -1,5 +1,5 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { AuctionDto } from '../../models/auction/auction.model';
+import { AuctionDto, AuctionStatusHelpers } from '../../models/auction/auction.model';
 import { ActivatedRoute } from '@angular/router';
 import { LotDto } from '../../models/lot/lot.model';
 import { LotPreviewComponent } from './lot-preview/lot-preview.component';
@@ -7,12 +7,14 @@ import { LotTableComponent } from './lot-table/lot-table.component';
 import { LotCarouselSingleComponent } from './lot-carousel-single/lot-carousel-single.component';
 import { BiddingJournalComponent } from './bidding-journal/bidding-journal.component';
 import { BidDto } from '../../models/bid/bid.model';
-import { AUCTION_FACADE, AUCTION_SERVICE, LOT_SERVICE } from '../../services/common/injection-tokens';
+import { ACCOUNT_SERVICE, AUCTION_FACADE, AUCTION_SERVICE, LOT_SERVICE } from '../../services/common/injection-tokens';
 import { LotService } from '../../services/data/lot/lot-service.interface';
 import { AuctionService } from '../../services/data/auction/auction-service.interface';
 import { AuctionFacadeService } from '../../services/shared/auction-facade.service';
 import { map, Subscription } from 'rxjs';
 import { DatePipe } from '@angular/common';
+import { AccountDto } from '../../models/account/account.model';
+import { AccountService } from '../../services/data/account/account-service.interface';
 
 @Component({
   selector: 'app-auction',
@@ -31,14 +33,18 @@ export class AuctionComponent implements OnInit, OnDestroy {
   private auctionId: number;
   private subscription = new Subscription();
   auction: AuctionDto | null = null;
+  owner: AccountDto | null = null;
   lots: LotDto[] | null = null;
   tableView: boolean = true;
   bids: BidDto[] | null = null;
   totalCollected: number = 0;
 
+  AuctionStatusHelpers = AuctionStatusHelpers;
+
   constructor(
     @Inject(LOT_SERVICE) private lotService: LotService,
     @Inject(AUCTION_SERVICE) private auctionService: AuctionService,
+    @Inject(ACCOUNT_SERVICE) private accountService: AccountService,
     @Inject(AUCTION_FACADE) private auctionFacade: AuctionFacadeService,
 
     private route: ActivatedRoute
@@ -61,6 +67,11 @@ export class AuctionComponent implements OnInit, OnDestroy {
     
     const auctionSub = this.auctionService.getById(this.auctionId)
       .subscribe((value) => this.auction = value);
+
+    if (this.auction == null) return;
+    this.accountService.getById(this.auction.ownerId).subscribe(
+      (val) => this.owner = val
+    )
 
     const lotSub = this.lotService
       .getLotsByAuctionId(this.auctionId)

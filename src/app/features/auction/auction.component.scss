@@ -73,7 +73,7 @@ app-bidding-journal::-webkit-scrollbar-thumb:hover {
 .data ul {
   display: grid;
   list-style: none;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   align-items: flex-start;
   justify-content: center;
@@ -189,4 +189,8 @@ app-bidding-journal::-webkit-scrollbar-thumb:hover {
   flex-direction: row;
   justify-content: center;
   gap: 50%;
+}
+
+.lot-preview.screen{
+  height: 64vh;
 }
