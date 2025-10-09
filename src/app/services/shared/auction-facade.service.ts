@@ -9,6 +9,7 @@ import { AccountService } from "../data/account/account-service.interface";
 import { AuctionDto } from "../../models/auction/auction.model";
 import { AccountAuctionService } from "../data/account-auction/account-auction-service.interface";
 import { AccountDto } from "../../models/account/account.model";
+import { AccountAuctionDto } from "../../models/account-auction/account-auction.model";
 
 @Injectable()
 export class AuctionFacadeService {
@@ -107,7 +108,23 @@ getAuctionsByParticipantId(accountId: number): Observable<AuctionDto[]> {
       )
     );
   }
+  
+  joinAuction(accountId: number, auctionId: number): Observable<AccountAuctionDto> {
+    return this.accountAuctionService.save({
+      id: 0,
+      accountId: accountId,
+      auctionId: auctionId
+    });
+  }
 
+  hasUserJoined(accountId: number, auctionId: number): Observable<boolean> {
+    return this.accountAuctionService.getAll().pipe(
+      map(vals => {
+        return vals.filter(val => val.accountId == accountId && auctionId == auctionId).length > 0
+      })
+    );
+  }
+  
   getParticipantsByAuctionId(auctionId: number): Observable<AccountDto[]> {
     return this.accountAuctionService.getAll().pipe(
       map(

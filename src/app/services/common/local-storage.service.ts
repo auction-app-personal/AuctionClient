@@ -40,6 +40,7 @@ export abstract class LocalStorageService<T extends { id: number }> implements C
     item.id = newId;
     this.items.push(item);
     this.saveToStorage();
+    console.log(this.items)
     return of(item);
   }
 
@@ -52,7 +53,8 @@ export abstract class LocalStorageService<T extends { id: number }> implements C
   }
 
   save(item: T): Observable<T> {
-    return item.id ? (this.update(item.id, item) as Observable<T>) : this.create(item);
+    console.log(item)
+    return (item.id && item.id != 0) ? (this.update(item.id, item) as Observable<T>) : this.create(item);
   }
 
   delete(id: number): Observable<void> {

@@ -38,33 +38,10 @@ export class MockAccountAuctionService extends LocalStorageService<AccountAuctio
     )
   }
 
-  override getById(id: number): Observable<AccountAuctionDto | null> {
-    return of();
-  }
-
-  override create(item: AccountAuctionDto): Observable<AccountAuctionDto> {
-    this.items.push(item);
-    this.saveToStorage();
-    return of(item);
-  }
-
-  override update(id: number, item: AccountAuctionDto): Observable<AccountAuctionDto> {
-    return of(item);
-  }
-
-  override delete(id: number): Observable<void> {
-    this.items = this.items.filter(relation => relation.accountId != id);
-    this.saveToStorage();
-    return of();
-  }
-
   deleteByKeys(accountId: number, auctionId: number){
     this.items = this.items.filter(relation => relation.accountId !== accountId || relation.auctionId !== auctionId);
     this.saveToStorage();
     return of(void 0);
   }
 
-  override save(accountAuction: AccountAuctionDto): Observable<AccountAuctionDto> {
-    return of();
-  }
 }
