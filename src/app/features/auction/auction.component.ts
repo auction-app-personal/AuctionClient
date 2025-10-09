@@ -15,6 +15,7 @@ import { map, Subscription } from 'rxjs';
 import { DatePipe } from '@angular/common';
 import { AccountDto } from '../../models/account/account.model';
 import { AccountService } from '../../services/data/account/account-service.interface';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-auction',
@@ -46,6 +47,7 @@ export class AuctionComponent implements OnInit, OnDestroy {
     @Inject(AUCTION_SERVICE) private auctionService: AuctionService,
     @Inject(ACCOUNT_SERVICE) private accountService: AccountService,
     @Inject(AUCTION_FACADE) private auctionFacade: AuctionFacadeService,
+    private authService: AuthService,
 
     private route: ActivatedRoute
   ) {
@@ -96,18 +98,34 @@ export class AuctionComponent implements OnInit, OnDestroy {
     const totalCollectedSub = this.auctionFacade.getTotalCurrentMoneyCollected(this.auctionId)
       .subscribe((value) => this.totalCollected = value);
 
-      this.subscription.add(routeSubscription);
-      this.subscription.add(auctionSub);
-      this.subscription.add(lotSub);
-      this.subscription.add(initialBidSub);
-      this.subscription.add(totalCollectedSub);
-      this.subscription.add(updateBidSub);
+    this.subscription.add(routeSubscription);
+    this.subscription.add(auctionSub);
+    this.subscription.add(lotSub);
+    this.subscription.add(initialBidSub);
+    this.subscription.add(totalCollectedSub);
+    this.subscription.add(updateBidSub);
 
-    }
+  }
+
+  hasUserJoined(): boolean{
+    const currentUserId = this.authService.currentUser()?.id;
+    const currentAuctionId = this.auction?.id;
+    if(!currentUserId || !currentAuctionId) return false;
+    let vala = false;
+    this.auctionFacade.hasUserJoined(currentUserId, currentAuctionId).subscribe(
+      val => vala = val
+    );
+    return vala;
+  }
 
   joinAuction() {
-    console.log('joined');
+    const currentUserId = this.authService.currentUser()?.id;
+    const currentAuctionId = this.auction?.id;
+    if(!currentUserId || !currentAuctionId) return;
+
+    this.auctionFacade.joinAuction(currentUserId, currentAuctionId);
   }
+
   showSingle() {
     if (this.tableView) this.tableView = false;
   }

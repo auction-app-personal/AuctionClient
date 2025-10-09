@@ -17,8 +17,19 @@
   </section>
   @if(AuctionStatusHelpers.isCreated(auction)){
   <section class="lot-preview screen">
-    <h2>Lot preview</h2>
-    <app-lot-preview [lots]="lots!" />
+    @if(lots && lots.length > 0) {
+      <h2>Lot preview</h2>
+      <app-lot-preview [lots]="lots!" />
+    }
+    @if (!hasUserJoined()) {
+    <div class="join">
+      <button (click)="joinAuction()" class="button-green">Join auction</button>
+    </div>
+    } @else {
+      <div>
+        You already joined
+      </div>
+    }
   </section>
   } @else if(AuctionStatusHelpers.isActive(auction)) {
   <section class="lots">
@@ -45,9 +56,6 @@
     </div>
   </section>
   }
-  <!-- <section class="join">
-      <button (click)="joinAuction()" class="button-green">Join auction</button>
-  </section> -->
 
   @if(AuctionStatusHelpers.isActive(auction)){
     <section class="bidding-journal screen">

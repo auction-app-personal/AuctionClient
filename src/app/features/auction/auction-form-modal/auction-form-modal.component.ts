@@ -26,10 +26,15 @@ export class AuctionFormModalComponent implements OnInit {
   }
 
   ngOnInit(): void {    
+    let localISOTime = null;
+
+    if(this.auction?.startTimestamp)
+      localISOTime = this.toDatetimeLocal(new Date(this.auction.startTimestamp));
+
     this.auctionForm = this.fb.group({
       name: [this.auction?.name ?? '', Validators.required],
       description: [this.auction?.description ?? ''],
-      startTimestamp: [this.auction?.startTimestamp ?? null],
+      startTimestamp: [localISOTime],
       duration: [this.auction?.duration ?? null],
     });
   }
@@ -45,14 +50,23 @@ export class AuctionFormModalComponent implements OnInit {
       ownerId: this.auction?.ownerId ?? this.accountId
     }).subscribe(
       (value) => {
-        if(value.id !== 0) this.save.emit()
-
+        if(value.id !== 0){
+          this.save.emit()
+        } 
         this.close.emit();
       }
     );
   }
 
   closeModal(): void {
+    console.log(this.auctionForm)
 	  this.close.emit();
+  }
+
+  private toDatetimeLocal(date: Date): string {
+    console.log(date)
+    const offset = date.getTimezoneOffset();
+    const local = new Date(date.getTime() - offset * 60 * 1000);
+    return local.toISOString().slice(0, 16); // "YYYY-MM-DDTHH:mm"
   }
 }
