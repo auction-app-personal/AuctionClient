@@ -36,9 +36,8 @@
             </tbody>
         </table>
     </div>
-
-    @if(isModalVisible){
-        <app-lot-form-modal [auctionId]="auctionId" (close)="hideAuctionModal()" (save)="loadLots()"/>
-    }
-
 </div>
+
+@if(isModalVisible){
+    <app-lot-form-modal [auctionId]="auctionId" (close)="hideAuctionModal()" (save)="loadLots()"/>
+}
