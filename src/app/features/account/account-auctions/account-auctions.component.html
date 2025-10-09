@@ -62,8 +62,8 @@
         </table>
     </div>
 
-    @if(isModalVisible){
-        <app-auction-form-modal [accountId]="accountId" (close)="hideAuctionModal()" (save)="loadOwnedAuctions()"/>
-    }
-
 </div>
+
+@if(isModalVisible){
+    <app-auction-form-modal [accountId]="accountId" (close)="hideAuctionModal()" (save)="loadOwnedAuctions()"/>
+}
