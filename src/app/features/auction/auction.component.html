@@ -21,15 +21,15 @@
       <h2>Lot preview</h2>
       <app-lot-preview [lots]="lots!" />
     }
+        <div class="join">
+
     @if (!hasUserJoined()) {
-    <div class="join">
       <button (click)="joinAuction()" class="button-green">Join auction</button>
-    </div>
     } @else {
-      <div>
-        You already joined
-      </div>
+      <p class="auction-joined">You already joined the auction ✓</p>
     }
+    </div>
+
   </section>
   } @else if(AuctionStatusHelpers.isActive(auction)) {
   <section class="lots">
