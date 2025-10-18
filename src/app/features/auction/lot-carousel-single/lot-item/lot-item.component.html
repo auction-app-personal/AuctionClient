@@ -1,5 +1,7 @@
 @let info = highestBidInfo$ | async;
 
+
+@if(info){
 <div class="item-wrapper">
   <img
     class="lot-img"
@@ -10,7 +12,7 @@
     <h3>{{ lot.name }}</h3>
     <div class="detail-group">
       <p>{{ lot.description }}</p>
-        @if (info && info?.account) {
+        @if (info?.account) {
           <p>Highest bidder: {{ info.account?.name }} ({{ info.bid?.amount }} {{ info.bid?.currency }})</p>
         } @else {
           <p>Start Price: {{ lot.startPrice }}</p>
@@ -25,10 +27,14 @@
           type="number"
           class="form-input-green"
           formControlName="amount"
+          appTrimLeadingZeros
           placeholder="Enter bid amount"
         />
       </div>
-      <button class="bid button-green" type="submit">Bid</button>
+      <button class="bid button-green" 
+              type="submit"
+              [disabled]="bidForm.get('amount')?.value <= info.bid!.amount">Bid</button>
     </form>
   </div>
 </div>
+}
